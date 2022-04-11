@@ -1,0 +1,1166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="CrmAuthentication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="organization" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CrmAuthenticationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CrmAuthenticationResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="descriptions" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CrmAuthenticationEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CrmAuthenticationExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CrmAuthenticationExResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CrmSecureAuthentication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CrmSecureAuthenticationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CrmSecureAuthenticationResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryTableHeader">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryTableHeaderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryTableHeaderResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryTableRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryTableRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryTableRecordsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryRelatedTableRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="recordGuid" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryRelatedTableRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryRelatedTableRecordsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QuerySingleRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entityName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="recordGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QuerySingleRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QuerySingleRecordResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryTableSearchHint">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryTableSearchHintResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="QueryTableSearchHintResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entityName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="recordGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="attributes">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateRecordResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entityName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="attributes">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateRecordResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateMultipleRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entityName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="attributes">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateMultipleRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateMultipleRecordsResult" type="tns:ArrayOfResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Result" type="tns:Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entityName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="recordGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteRecordResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerWorkflow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="workflowGuid" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="recordGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerWorkflowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TriggerWorkflowResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadImage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileContent" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="entityName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="recordGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadImageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UploadImageResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadImage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="recordGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="height" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="width" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadImageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DownloadImageResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInformationContent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInformationContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetInformationContentResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRecordStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entityName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="recordGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="status" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRecordStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetRecordStatusResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddListMembers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="listGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="memberGuidArr" type="tns:ArrayOfGuid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGuid">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="guid" type="s1:guid" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddListMembersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddListMembersResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveListMembers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="listGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="memberGuidArr" type="tns:ArrayOfGuid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveListMembersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveListMembersResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryPicklistOptions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entityName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="picklistName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryPicklistOptionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryPicklistOptionsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRecordsRelation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="primaryRecordGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="relatedRecordGuidArr" type="tns:ArrayOfGuid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRecordsRelationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetRecordsRelationResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveRecordsRelation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="primaryRecordGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="relatedRecordGuidArr" type="tns:ArrayOfGuid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveRecordsRelationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveRecordsRelationResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveMultipleRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entityName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="attributes" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="queryFilters" type="tns:FilterStatement" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FilterStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="conditions" type="tns:ArrayOfConditionStatement" />
+          <s:element minOccurs="0" maxOccurs="1" name="filters" type="tns:ArrayOfFilterStatement" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:FilterOperatorEnum" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfConditionStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ConditionStatement" type="tns:ConditionStatement" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ConditionStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="attributeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="values" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:ConditionOperatorEnum" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ConditionOperatorEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="Between" />
+          <s:enumeration value="NotBetween" />
+          <s:enumeration value="Equal" />
+          <s:enumeration value="NotEqual" />
+          <s:enumeration value="GreaterEqual" />
+          <s:enumeration value="GreaterThan" />
+          <s:enumeration value="In" />
+          <s:enumeration value="NotIn" />
+          <s:enumeration value="LessEqual" />
+          <s:enumeration value="LessThan" />
+          <s:enumeration value="Like" />
+          <s:enumeration value="NotLike" />
+          <s:enumeration value="Null" />
+          <s:enumeration value="NotNull" />
+          <s:enumeration value="On" />
+          <s:enumeration value="NotOn" />
+          <s:enumeration value="OnOrAfter" />
+          <s:enumeration value="OnOrBefore" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfFilterStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FilterStatement" type="tns:FilterStatement" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="FilterOperatorEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="And" />
+          <s:enumeration value="Or" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="RetrieveMultipleRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveMultipleRecordsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CrmAuthenticationSoapIn">
+    <wsdl:part name="parameters" element="tns:CrmAuthentication" />
+  </wsdl:message>
+  <wsdl:message name="CrmAuthenticationSoapOut">
+    <wsdl:part name="parameters" element="tns:CrmAuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="CrmAuthenticationExSoapIn">
+    <wsdl:part name="parameters" element="tns:CrmAuthenticationEx" />
+  </wsdl:message>
+  <wsdl:message name="CrmAuthenticationExSoapOut">
+    <wsdl:part name="parameters" element="tns:CrmAuthenticationExResponse" />
+  </wsdl:message>
+  <wsdl:message name="CrmSecureAuthenticationSoapIn">
+    <wsdl:part name="parameters" element="tns:CrmSecureAuthentication" />
+  </wsdl:message>
+  <wsdl:message name="CrmSecureAuthenticationSoapOut">
+    <wsdl:part name="parameters" element="tns:CrmSecureAuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryTableHeaderSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryTableHeader" />
+  </wsdl:message>
+  <wsdl:message name="QueryTableHeaderSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryTableHeaderResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryTableRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryTableRecords" />
+  </wsdl:message>
+  <wsdl:message name="QueryTableRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryTableRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryRelatedTableRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryRelatedTableRecords" />
+  </wsdl:message>
+  <wsdl:message name="QueryRelatedTableRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryRelatedTableRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="QuerySingleRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:QuerySingleRecord" />
+  </wsdl:message>
+  <wsdl:message name="QuerySingleRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:QuerySingleRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryTableSearchHintSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryTableSearchHint" />
+  </wsdl:message>
+  <wsdl:message name="QueryTableSearchHintSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryTableSearchHintResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRecord" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateRecord" />
+  </wsdl:message>
+  <wsdl:message name="CreateRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateMultipleRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateMultipleRecords" />
+  </wsdl:message>
+  <wsdl:message name="CreateMultipleRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateMultipleRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteRecord" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerWorkflowSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerWorkflow" />
+  </wsdl:message>
+  <wsdl:message name="TriggerWorkflowSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerWorkflowResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadImageSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadImage" />
+  </wsdl:message>
+  <wsdl:message name="UploadImageSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadImageSoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadImage" />
+  </wsdl:message>
+  <wsdl:message name="DownloadImageSoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInformationContentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInformationContent" />
+  </wsdl:message>
+  <wsdl:message name="GetInformationContentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInformationContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetRecordStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:SetRecordStatus" />
+  </wsdl:message>
+  <wsdl:message name="SetRecordStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:SetRecordStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddListMembersSoapIn">
+    <wsdl:part name="parameters" element="tns:AddListMembers" />
+  </wsdl:message>
+  <wsdl:message name="AddListMembersSoapOut">
+    <wsdl:part name="parameters" element="tns:AddListMembersResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveListMembersSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveListMembers" />
+  </wsdl:message>
+  <wsdl:message name="RemoveListMembersSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveListMembersResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryPicklistOptionsSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryPicklistOptions" />
+  </wsdl:message>
+  <wsdl:message name="QueryPicklistOptionsSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryPicklistOptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetRecordsRelationSoapIn">
+    <wsdl:part name="parameters" element="tns:SetRecordsRelation" />
+  </wsdl:message>
+  <wsdl:message name="SetRecordsRelationSoapOut">
+    <wsdl:part name="parameters" element="tns:SetRecordsRelationResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveRecordsRelationSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveRecordsRelation" />
+  </wsdl:message>
+  <wsdl:message name="RemoveRecordsRelationSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveRecordsRelationResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMultipleRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveMultipleRecords" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMultipleRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveMultipleRecordsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="EbgCrmWebServiceApiSoap">
+    <wsdl:operation name="CrmAuthentication">
+      <wsdl:input message="tns:CrmAuthenticationSoapIn" />
+      <wsdl:output message="tns:CrmAuthenticationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CrmAuthenticationEx">
+      <wsdl:input message="tns:CrmAuthenticationExSoapIn" />
+      <wsdl:output message="tns:CrmAuthenticationExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CrmSecureAuthentication">
+      <wsdl:input message="tns:CrmSecureAuthenticationSoapIn" />
+      <wsdl:output message="tns:CrmSecureAuthenticationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryTableHeader">
+      <wsdl:input message="tns:QueryTableHeaderSoapIn" />
+      <wsdl:output message="tns:QueryTableHeaderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryTableRecords">
+      <wsdl:input message="tns:QueryTableRecordsSoapIn" />
+      <wsdl:output message="tns:QueryTableRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRelatedTableRecords">
+      <wsdl:input message="tns:QueryRelatedTableRecordsSoapIn" />
+      <wsdl:output message="tns:QueryRelatedTableRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QuerySingleRecord">
+      <wsdl:input message="tns:QuerySingleRecordSoapIn" />
+      <wsdl:output message="tns:QuerySingleRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryTableSearchHint">
+      <wsdl:input message="tns:QueryTableSearchHintSoapIn" />
+      <wsdl:output message="tns:QueryTableSearchHintSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecord">
+      <wsdl:input message="tns:UpdateRecordSoapIn" />
+      <wsdl:output message="tns:UpdateRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateRecord">
+      <wsdl:input message="tns:CreateRecordSoapIn" />
+      <wsdl:output message="tns:CreateRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMultipleRecords">
+      <wsdl:input message="tns:CreateMultipleRecordsSoapIn" />
+      <wsdl:output message="tns:CreateMultipleRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecord">
+      <wsdl:input message="tns:DeleteRecordSoapIn" />
+      <wsdl:output message="tns:DeleteRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerWorkflow">
+      <wsdl:input message="tns:TriggerWorkflowSoapIn" />
+      <wsdl:output message="tns:TriggerWorkflowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadImage">
+      <wsdl:input message="tns:UploadImageSoapIn" />
+      <wsdl:output message="tns:UploadImageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadImage">
+      <wsdl:input message="tns:DownloadImageSoapIn" />
+      <wsdl:output message="tns:DownloadImageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInformationContent">
+      <wsdl:input message="tns:GetInformationContentSoapIn" />
+      <wsdl:output message="tns:GetInformationContentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRecordStatus">
+      <wsdl:input message="tns:SetRecordStatusSoapIn" />
+      <wsdl:output message="tns:SetRecordStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddListMembers">
+      <wsdl:input message="tns:AddListMembersSoapIn" />
+      <wsdl:output message="tns:AddListMembersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveListMembers">
+      <wsdl:input message="tns:RemoveListMembersSoapIn" />
+      <wsdl:output message="tns:RemoveListMembersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryPicklistOptions">
+      <wsdl:input message="tns:QueryPicklistOptionsSoapIn" />
+      <wsdl:output message="tns:QueryPicklistOptionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRecordsRelation">
+      <wsdl:input message="tns:SetRecordsRelationSoapIn" />
+      <wsdl:output message="tns:SetRecordsRelationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRecordsRelation">
+      <wsdl:input message="tns:RemoveRecordsRelationSoapIn" />
+      <wsdl:output message="tns:RemoveRecordsRelationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMultipleRecords">
+      <wsdl:input message="tns:RetrieveMultipleRecordsSoapIn" />
+      <wsdl:output message="tns:RetrieveMultipleRecordsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EbgCrmWebServiceApiSoap" type="tns:EbgCrmWebServiceApiSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CrmAuthentication">
+      <soap:operation soapAction="http://tempuri.org/CrmAuthentication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrmAuthenticationEx">
+      <soap:operation soapAction="http://tempuri.org/CrmAuthenticationEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrmSecureAuthentication">
+      <soap:operation soapAction="http://tempuri.org/CrmSecureAuthentication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryTableHeader">
+      <soap:operation soapAction="http://tempuri.org/QueryTableHeader" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryTableRecords">
+      <soap:operation soapAction="http://tempuri.org/QueryTableRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRelatedTableRecords">
+      <soap:operation soapAction="http://tempuri.org/QueryRelatedTableRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuerySingleRecord">
+      <soap:operation soapAction="http://tempuri.org/QuerySingleRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryTableSearchHint">
+      <soap:operation soapAction="http://tempuri.org/QueryTableSearchHint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecord">
+      <soap:operation soapAction="http://tempuri.org/UpdateRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRecord">
+      <soap:operation soapAction="http://tempuri.org/CreateRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMultipleRecords">
+      <soap:operation soapAction="http://tempuri.org/CreateMultipleRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecord">
+      <soap:operation soapAction="http://tempuri.org/DeleteRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerWorkflow">
+      <soap:operation soapAction="http://tempuri.org/TriggerWorkflow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadImage">
+      <soap:operation soapAction="http://tempuri.org/UploadImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadImage">
+      <soap:operation soapAction="http://tempuri.org/DownloadImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInformationContent">
+      <soap:operation soapAction="http://tempuri.org/GetInformationContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRecordStatus">
+      <soap:operation soapAction="http://tempuri.org/SetRecordStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddListMembers">
+      <soap:operation soapAction="http://tempuri.org/AddListMembers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveListMembers">
+      <soap:operation soapAction="http://tempuri.org/RemoveListMembers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryPicklistOptions">
+      <soap:operation soapAction="http://tempuri.org/QueryPicklistOptions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRecordsRelation">
+      <soap:operation soapAction="http://tempuri.org/SetRecordsRelation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRecordsRelation">
+      <soap:operation soapAction="http://tempuri.org/RemoveRecordsRelation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMultipleRecords">
+      <soap:operation soapAction="http://tempuri.org/RetrieveMultipleRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EbgCrmWebServiceApiSoap12" type="tns:EbgCrmWebServiceApiSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CrmAuthentication">
+      <soap12:operation soapAction="http://tempuri.org/CrmAuthentication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrmAuthenticationEx">
+      <soap12:operation soapAction="http://tempuri.org/CrmAuthenticationEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrmSecureAuthentication">
+      <soap12:operation soapAction="http://tempuri.org/CrmSecureAuthentication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryTableHeader">
+      <soap12:operation soapAction="http://tempuri.org/QueryTableHeader" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryTableRecords">
+      <soap12:operation soapAction="http://tempuri.org/QueryTableRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRelatedTableRecords">
+      <soap12:operation soapAction="http://tempuri.org/QueryRelatedTableRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuerySingleRecord">
+      <soap12:operation soapAction="http://tempuri.org/QuerySingleRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryTableSearchHint">
+      <soap12:operation soapAction="http://tempuri.org/QueryTableSearchHint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecord">
+      <soap12:operation soapAction="http://tempuri.org/UpdateRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRecord">
+      <soap12:operation soapAction="http://tempuri.org/CreateRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMultipleRecords">
+      <soap12:operation soapAction="http://tempuri.org/CreateMultipleRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecord">
+      <soap12:operation soapAction="http://tempuri.org/DeleteRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerWorkflow">
+      <soap12:operation soapAction="http://tempuri.org/TriggerWorkflow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadImage">
+      <soap12:operation soapAction="http://tempuri.org/UploadImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadImage">
+      <soap12:operation soapAction="http://tempuri.org/DownloadImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInformationContent">
+      <soap12:operation soapAction="http://tempuri.org/GetInformationContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRecordStatus">
+      <soap12:operation soapAction="http://tempuri.org/SetRecordStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddListMembers">
+      <soap12:operation soapAction="http://tempuri.org/AddListMembers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveListMembers">
+      <soap12:operation soapAction="http://tempuri.org/RemoveListMembers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryPicklistOptions">
+      <soap12:operation soapAction="http://tempuri.org/QueryPicklistOptions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRecordsRelation">
+      <soap12:operation soapAction="http://tempuri.org/SetRecordsRelation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRecordsRelation">
+      <soap12:operation soapAction="http://tempuri.org/RemoveRecordsRelation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMultipleRecords">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveMultipleRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EbgCrmWebServiceApi">
+    <wsdl:port name="EbgCrmWebServiceApiSoap" binding="tns:EbgCrmWebServiceApiSoap">
+      <soap:address location="https://cmw.hisales.hinet.net/CrmWebServiceAPI/EbgCrmWebServiceApi.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EbgCrmWebServiceApiSoap12" binding="tns:EbgCrmWebServiceApiSoap12">
+      <soap12:address location="https://cmw.hisales.hinet.net/CrmWebServiceAPI/EbgCrmWebServiceApi.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,1379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{355A9562-899B-4F9C-802C-C04BF54846CA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ECSSO</RootNamespace>
+    <AssemblyName>ECSSO</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AllPay.Payment.Integration, Version=1.0.0.10, Culture=neutral, PublicKeyToken=afb33c1e6a3b1bbd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AllPay.Payment.Integration.dll</HintPath>
+    </Reference>
+    <Reference Include="AntiXssLibrary">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net40-client\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Administrator\Desktop\Microsoft.Web.Administration.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="TemplateCss, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\TemplateCss.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="address.js" />
+    <Content Include="api\FBAPI\Login.aspx" />
+    <Content Include="api\getTour.aspx" />
+    <Content Include="api\SetTemplate.ashx" />
+    <Content Include="api\tabletest.aspx" />
+    <Content Include="App_LocalResources\Member.aspx.resx" />
+    <Content Include="Concatenation\iKPDLoginVerification.aspx" />
+    <Content Include="Customer\BankStatement.aspx" />
+    <Content Include="dist\favicon-16x16.png" />
+    <Content Include="dist\favicon-32x32.png" />
+    <Content Include="dist\index.html" />
+    <Content Include="dist\oauth2-redirect.html" />
+    <Content Include="dist\smart.html" />
+    <Content Include="dist\swagger-ui-bundle.js" />
+    <Content Include="dist\swagger-ui-standalone-preset.js" />
+    <Content Include="dist\swagger-ui.css" />
+    <Content Include="dist\swagger-ui.js" />
+    <Content Include="EIPLogin.aspx" />
+    <Content Include="map.aspx" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Coupon.aspx" />
+    <Content Include="Credit.aspx" />
+    <Content Include="Dealer.aspx" />
+    <Content Include="GAPI\indexmeal.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="MealLogin.aspx" />
+    <Content Include="MemberBonus.aspx" />
+    <Content Include="OrderList2.aspx" />
+    <Content Include="OrderLogistics.aspx" />
+    <Content Include="orderqa.aspx" />
+    <Content Include="privacy.html" />
+    <Content Include="QA.aspx" />
+    <Content Include="QrCode.aspx" />
+    <Content Include="ResetPassword.aspx" />
+    <Content Include="dist\converted.json" />
+    <Content Include="dist\converted1.json" />
+    <Content Include="dist\lan.json" />
+    <Content Include="dist\s.json" />
+    <Content Include="dist\smart.json" />
+    <Content Include="dist\swagger-ui-bundle.js.map" />
+    <Content Include="dist\swagger-ui-standalone-preset.js.map" />
+    <Content Include="dist\swagger-ui.css.map" />
+    <Content Include="dist\swagger-ui.js.map" />
+    <Content Include="dist\test.json" />
+    <Content Include="dist\test2.json" />
+    <Content Include="dist\web.config" />
+    <Content Include="api\CustFormAPI\fromList.ashx" />
+    <Content Include="api\CustFormAPI\QuestionType.ashx" />
+    <Content Include="api\CustFormAPI\FormColumn.ashx" />
+    <Content Include="api\CustFormAPI\formLog.ashx" />
+    <Content Include="api\DataBind\DataBind.ashx" />
+    <Content Include="api\DataBind\DataNotBind.ashx" />
+    <Content Include="api\CustFormAPI\form.ashx" />
+    <Content Include="api\Allpay.ashx" />
+    <Content Include="api\Coupon\Coupons.ashx" />
+    <Content Include="api\deleteToken.ashx" />
+    <Content Include="api\Component\Components.ashx" />
+    <Content Include="Concatenation\IKPDLogin.ashx" />
+    <Content Include="api\Analytics\Analytics.ashx" />
+    <Content Include="api\Power\Power.ashx" />
+    <Content Include="api\Power\Empl.ashx" />
+    <Content Include="api\Power\EmplMassage.ashx" />
+    <Content Include="api\Power\Group.ashx" />
+    <Content Include="api\Power\MenuPower.ashx" />
+    <Content Include="api\Analytics\SaveCustTable.ashx" />
+    <Content Include="api\Analytics\getTheCustTable.ashx" />
+    <Content Include="api\Analytics\saveAims.ashx" />
+    <Content Include="api\Analytics\saveCondition.ashx" />
+    <Content Include="api\Analytics\getKPDData.ashx" />
+    <Content Include="api\Analytics\custExcel.ashx" />
+    <Content Include="api\Analytics\FlowCheck.ashx" />
+    <Content Include="api\Order\OrderHandler.ashx" />
+    <Content Include="api\Order\OrderUpdate.ashx" />
+    <Content Include="api\Order\Report\OrderReport.ashx" />
+    <Content Include="api\Prod\ProdHandler.ashx" />
+    <Content Include="api\Component\ObjectItemHandler.ashx" />
+    <Content Include="api\ShopItem\HighlightsShopHandler.ashx" />
+    <Content Include="api\ThirdParty\ThirdPartyHandler.ashx" />
+    <Content Include="api\Shopping\ShoppingCar.ashx" />
+    <Content Include="api\Shopping\getOrder.ashx" />
+    <Content Include="api\Order\Report\OrderReportOfWinton.ashx" />
+    <Content Include="api\EmailCont\EmailContHandler.ashx" />
+    <Content Include="api\FrontDesk\OrdersFHandler.ashx" />
+    <Content Include="api\Order\OrderFileHandler.ashx" />
+    <Content Include="api\Order\Report\OrderReportOfList.ashx" />
+    <Content Include="api\StoreSet\StoreSetHandler.ashx" />
+    <Content Include="api\MessageBoard\MessageBoardHandler.ashx" />
+    <Content Include="api\Order\BankStatement.ashx" />
+    <Content Include="api\FileUpload\FileHandler.ashx" />
+    <Content Include="api\SearchClass\SearchClassHandler.ashx" />
+    <Content Include="api\SearchClass\SearchClassDetailHandler.ashx" />
+    <Content Include="api\Order\CheckHandler.ashx" />
+    <None Include="Properties\PublishProfiles\ECSSO.pubxml" />
+    <None Include="Service References\Ldap\configuration91.svcinfo" />
+    <None Include="Service References\Ldap\configuration.svcinfo" />
+    <None Include="Service References\Ldap\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="ServiceRecordList.aspx" />
+    <Content Include="Shopping2.aspx" />
+    <Content Include="SSOcss\en-us\bonuslist.css" />
+    <Content Include="SSOcss\en-us\Credit.css" />
+    <Content Include="SSOcss\en-us\Dealer.css" />
+    <Content Include="SSOcss\en-us\forgetpassword.css" />
+    <Content Include="SSOcss\en-us\login.css" />
+    <Content Include="SSOcss\en-us\member.css" />
+    <Content Include="SSOcss\en-us\memberadd.css" />
+    <Content Include="SSOcss\en-us\memberedit.css" />
+    <Content Include="SSOcss\en-us\orderlist.css" />
+    <Content Include="SSOcss\en-us\orderqa.css" />
+    <Content Include="SSOcss\en-us\QA.css" />
+    <Content Include="SSOcss\en-us\Coupon.css" />
+    <Content Include="SSOcss\en-us\QrCode.css" />
+    <Content Include="SSOcss\en-us\ResetPassword.css" />
+    <Content Include="SSOcss\en-us\shopping.css" />
+    <Content Include="SSOcss\en-us\shopping2.css" />
+    <Content Include="SSOcss\en-us\VirtualOrderList.css" />
+    <Content Include="FBAPI\index.aspx" />
+    <Content Include="GAPI\index.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="HinetAPI\checkEmail.aspx" />
+    <Content Include="HinetAPI\index.aspx" />
+    <Content Include="img\ad_03.png" />
+    <Content Include="img\bgg.jpg" />
+    <Content Include="img\eclogo.png" />
+    <Content Include="img\facebook_login.png" />
+    <Content Include="img\foot.png" />
+    <Content Include="img\Google_login.png" />
+    <Content Include="img\hinet_login.png" />
+    <Content Include="img\infooter.jpg" />
+    <Content Include="img\login_logo.png" />
+    <Content Include="img\right_bg.png" />
+    <Content Include="js\autoheight.js" />
+    <Content Include="js\jquery.s2t.js" />
+    <Content Include="Member.aspx" />
+    <Content Include="OrderList.aspx" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Shopping.aspx" />
+    <Content Include="SSOcss\ja-jp\bonuslist.css" />
+    <Content Include="SSOcss\ja-jp\Coupon.css" />
+    <Content Include="SSOcss\ja-jp\Credit.css" />
+    <Content Include="SSOcss\ja-jp\Dealer.css" />
+    <Content Include="SSOcss\ja-jp\forgetpassword.css" />
+    <Content Include="SSOcss\ja-jp\login.css" />
+    <Content Include="SSOcss\ja-jp\member.css" />
+    <Content Include="SSOcss\ja-jp\memberadd.css" />
+    <Content Include="SSOcss\ja-jp\memberedit.css" />
+    <Content Include="SSOcss\ja-jp\orderlist.css" />
+    <Content Include="SSOcss\ja-jp\orderqa.css" />
+    <Content Include="SSOcss\ja-jp\QA.css" />
+    <Content Include="SSOcss\ja-jp\QrCode.css" />
+    <Content Include="SSOcss\ja-jp\ResetPassword.css" />
+    <Content Include="SSOcss\ja-jp\shopping.css" />
+    <Content Include="SSOcss\ja-jp\shopping2.css" />
+    <Content Include="SSOcss\ja-jp\VirtualOrderList.css" />
+    <Content Include="SSOcss\serviceRecord.css" />
+    <Content Include="SSOcss\vi-vn\bonuslist.css" />
+    <Content Include="SSOcss\vi-vn\Coupon.css" />
+    <Content Include="SSOcss\vi-vn\Credit.css" />
+    <Content Include="SSOcss\vi-vn\Dealer.css" />
+    <Content Include="SSOcss\vi-vn\forgetpassword.css" />
+    <Content Include="SSOcss\vi-vn\login.css" />
+    <Content Include="SSOcss\vi-vn\member.css" />
+    <Content Include="SSOcss\vi-vn\memberadd.css" />
+    <Content Include="SSOcss\vi-vn\memberedit.css" />
+    <Content Include="SSOcss\vi-vn\orderlist.css" />
+    <Content Include="SSOcss\vi-vn\orderqa.css" />
+    <Content Include="SSOcss\vi-vn\QA.css" />
+    <Content Include="SSOcss\vi-vn\QrCode.css" />
+    <Content Include="SSOcss\vi-vn\ResetPassword.css" />
+    <Content Include="SSOcss\vi-vn\shopping.css" />
+    <Content Include="SSOcss\vi-vn\shopping2.css" />
+    <Content Include="SSOcss\vi-vn\VirtualOrderList.css" />
+    <Content Include="SSOcss\zh-cn\bonuslist.css" />
+    <Content Include="SSOcss\zh-cn\Coupon.css" />
+    <Content Include="SSOcss\zh-cn\Credit.css" />
+    <Content Include="SSOcss\zh-cn\Dealer.css" />
+    <Content Include="SSOcss\zh-cn\forgetpassword.css" />
+    <Content Include="SSOcss\zh-cn\login.css" />
+    <Content Include="SSOcss\zh-cn\member.css" />
+    <Content Include="SSOcss\zh-cn\memberadd.css" />
+    <Content Include="SSOcss\zh-cn\memberedit.css" />
+    <Content Include="SSOcss\zh-cn\orderlist.css" />
+    <Content Include="SSOcss\zh-cn\orderqa.css" />
+    <Content Include="SSOcss\zh-cn\QA.css" />
+    <Content Include="SSOcss\zh-cn\QrCode.css" />
+    <Content Include="SSOcss\zh-cn\ResetPassword.css" />
+    <Content Include="SSOcss\zh-cn\shopping.css" />
+    <Content Include="SSOcss\zh-cn\shopping2.css" />
+    <Content Include="SSOcss\zh-cn\VirtualOrderList.css" />
+    <Content Include="SSOcss\zh-tw\bonuslist.css" />
+    <Content Include="SSOcss\zh-tw\Coupon.css" />
+    <Content Include="SSOcss\zh-tw\Credit.css" />
+    <Content Include="SSOcss\zh-tw\Dealer.css" />
+    <Content Include="SSOcss\zh-tw\forgetpassword.css" />
+    <Content Include="SSOcss\zh-tw\login.css" />
+    <Content Include="SSOcss\zh-tw\member.css" />
+    <Content Include="SSOcss\zh-tw\memberadd.css" />
+    <Content Include="SSOcss\zh-tw\memberedit.css" />
+    <Content Include="SSOcss\zh-tw\orderlist.css" />
+    <Content Include="SSOcss\zh-tw\orderqa.css" />
+    <Content Include="SSOcss\zh-tw\QA.css" />
+    <Content Include="SSOcss\zh-tw\QrCode.css" />
+    <Content Include="SSOcss\zh-tw\ResetPassword.css" />
+    <Content Include="SSOcss\zh-tw\shopping.css" />
+    <Content Include="SSOcss\zh-tw\shopping2.css" />
+    <Content Include="SSOcss\zh-tw\StoreType2.css" />
+    <Content Include="SSOcss\zh-tw\VirtualOrderList.css" />
+    <Content Include="StoreType2.aspx" />
+    <Content Include="system_login1.asp" />
+    <Content Include="lib\cn1.asp" />
+    <Content Include="lib\cn2.asp" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ForgetPassword.aspx" />
+    <Content Include="lib\systemcheck.asp" />
+    <Content Include="Manage.aspx" />
+    <Content Include="MemberAdd.aspx" />
+    <Content Include="MemberEdit.aspx" />
+    <Content Include="SSO.asmx" />
+    <Content Include="api\GetData.ashx" />
+    <Content Include="api\GameData.ashx" />
+    <Content Include="api\QRCode.ashx" />
+    <Content Include="api\FBAPI\OAuth.ashx" />
+    <Content Include="api\GetMember.ashx" />
+    <Content Include="api\Coupon.ashx" />
+    <Content Include="api\Booking.ashx" />
+    <Content Include="api\Store.ashx" />
+    <Content Include="api\Code128.ashx" />
+    <Content Include="api\Code39.ashx" />
+    <Content Include="api\SetDeviceProd.ashx" />
+    <Content Include="api\QA.ashx" />
+    <Content Include="api\InsertMember.ashx" />
+    <Content Include="api\FBLogin.ashx" />
+    <Content Include="api\Logistics.ashx" />
+    <Content Include="api\returnLogistics.ashx" />
+    <Content Include="api\LogisticsSetting.ashx" />
+    <Content Include="api\Einvoice.ashx" />
+    <Content Include="api\GetMenu.ashx" />
+    <Content Include="api\GetProd.ashx" />
+    <Content Include="api\Login.ashx" />
+    <Content Include="api\sendEmail.ashx" />
+    <Content Include="api\getServiceRecord.ashx" />
+    <Content Include="api\Authorization.ashx" />
+    <Content Include="api\getAds.ashx" />
+    <Content Include="api\getBeacon.ashx" />
+    <Content Include="api\getDistance.ashx" />
+    <Content Include="api\getEvent.ashx" />
+    <Content Include="api\getHelp.ashx" />
+    <Content Include="api\getHotel.ashx" />
+    <Content Include="api\getNews.ashx" />
+    <Content Include="api\getNode.ashx" />
+    <Content Include="api\getSearch.ashx" />
+    <Content Include="api\getShop.ashx" />
+    <Content Include="api\getTraffic.ashx" />
+    <Content Include="api\getTrip.ashx" />
+    <Content Include="api\getVoices.ashx" />
+    <Content Include="api\MyTripSet.ashx" />
+    <Content Include="api\User.ashx" />
+    <Content Include="api\getMovie.ashx" />
+    <Content Include="api\getTour.ashx" />
+    <Content Include="api\User2.ashx" />
+    <None Include="Content\bootstrap-theme.css.map" />
+    <None Include="Content\bootstrap.css.map" />
+    <Content Include="GetVirtualProd.ashx" />
+    <Content Include="OrderResetPay.ashx" />
+    <None Include="Service References\Ldap\ldapService.wsdl" />
+    <None Include="Web References\CockerAdmin\CockerAdmin.disco" />
+    <Content Include="testallpay.aspx" />
+    <Content Include="testallpayreturn.aspx" />
+    <Content Include="testdll.aspx" />
+    <Content Include="TestForm.aspx" />
+    <Content Include="upload\ad_03.png" />
+    <Content Include="VirtualOrderList.aspx" />
+    <Content Include="Web References\CRMLoginWebService\AUTH_SVC_RT.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\CRMLoginWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\CRMLoginWebService\service.disco" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web References\CRMLoginWebService\service.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="api\Allpay.ashx.cs">
+      <DependentUpon>Allpay.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Analytics\Analytics.ashx.cs">
+      <DependentUpon>Analytics.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Analytics\custExcel.ashx.cs">
+      <DependentUpon>custExcel.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Analytics\FlowCheck.ashx.cs">
+      <DependentUpon>FlowCheck.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Analytics\getKPDData.ashx.cs">
+      <DependentUpon>getKPDData.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Analytics\getTheCustTable.ashx.cs">
+      <DependentUpon>getTheCustTable.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Analytics\saveAims.ashx.cs">
+      <DependentUpon>saveAims.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Analytics\saveCondition.ashx.cs">
+      <DependentUpon>saveCondition.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Analytics\SaveCustTable.ashx.cs">
+      <DependentUpon>SaveCustTable.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Authorization.ashx.cs">
+      <DependentUpon>Authorization.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Booking.ashx.cs">
+      <DependentUpon>Booking.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Code128.ashx.cs">
+      <DependentUpon>Code128.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Code39.ashx.cs">
+      <DependentUpon>Code39.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Component\Components.ashx.cs">
+      <DependentUpon>Components.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Component\ObjectItemHandler.ashx.cs">
+      <DependentUpon>ObjectItemHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Coupon.ashx.cs">
+      <DependentUpon>Coupon.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Coupon\Coupons.ashx.cs">
+      <DependentUpon>Coupons.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\CustFormAPI\FormColumn.ashx.cs">
+      <DependentUpon>FormColumn.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\CustFormAPI\formLog.ashx.cs">
+      <DependentUpon>formLog.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\CustFormAPI\form.ashx.cs">
+      <DependentUpon>form.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\CustFormAPI\QuestionType.ashx.cs">
+      <DependentUpon>QuestionType.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\DataBind\DataBind.ashx.cs">
+      <DependentUpon>DataBind.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\DataBind\DataNotBind.ashx.cs">
+      <DependentUpon>DataNotBind.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\deleteToken.ashx.cs">
+      <DependentUpon>deleteToken.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Einvoice.ashx.cs">
+      <DependentUpon>Einvoice.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\EmailCont\EmailContHandler.ashx.cs">
+      <DependentUpon>EmailContHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\FBAPI\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="api\FBAPI\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="api\FBAPI\OAuth.ashx.cs">
+      <DependentUpon>OAuth.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\FBLogin.ashx.cs">
+      <DependentUpon>FBLogin.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\CustFormAPI\fromList.ashx.cs">
+      <DependentUpon>fromList.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\FileUpload\FileHandler.ashx.cs">
+      <DependentUpon>FileHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\FrontDesk\OrdersFHandler.ashx.cs">
+      <DependentUpon>OrdersFHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\GameData.ashx.cs">
+      <DependentUpon>GameData.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getAds.ashx.cs">
+      <DependentUpon>getAds.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getBeacon.ashx.cs">
+      <DependentUpon>getBeacon.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\GetData.ashx.cs">
+      <DependentUpon>GetData.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getDistance.ashx.cs">
+      <DependentUpon>getDistance.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getEvent.ashx.cs">
+      <DependentUpon>getEvent.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getHelp.ashx.cs">
+      <DependentUpon>getHelp.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getHotel.ashx.cs">
+      <DependentUpon>getHotel.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\GetMember.ashx.cs">
+      <DependentUpon>GetMember.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\GetMenu.ashx.cs">
+      <DependentUpon>GetMenu.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getMovie.ashx.cs">
+      <DependentUpon>getMovie.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getNews.ashx.cs">
+      <DependentUpon>getNews.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getNode.ashx.cs">
+      <DependentUpon>getNode.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\GetProd.ashx.cs">
+      <DependentUpon>GetProd.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getSearch.ashx.cs">
+      <DependentUpon>getSearch.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getServiceRecord.ashx.cs">
+      <DependentUpon>getServiceRecord.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getShop.ashx.cs">
+      <DependentUpon>getShop.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getTour.ashx.cs">
+      <DependentUpon>getTour.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getTour.aspx.cs">
+      <DependentUpon>getTour.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="api\getTour.aspx.designer.cs">
+      <DependentUpon>getTour.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getTraffic.ashx.cs">
+      <DependentUpon>getTraffic.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getTrip.ashx.cs">
+      <DependentUpon>getTrip.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\getVoices.ashx.cs">
+      <DependentUpon>getVoices.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\GoogleUrlShortener.cs" />
+    <Compile Include="api\InsertMember.ashx.cs">
+      <DependentUpon>InsertMember.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Login.ashx.cs">
+      <DependentUpon>Login.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Logistics.ashx.cs">
+      <DependentUpon>Logistics.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\LogisticsSetting.ashx.cs">
+      <DependentUpon>LogisticsSetting.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\MessageBoard\MessageBoardHandler.ashx.cs">
+      <DependentUpon>MessageBoardHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\MyTripSet.ashx.cs">
+      <DependentUpon>MyTripSet.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Order\BankStatement.ashx.cs">
+      <DependentUpon>BankStatement.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Order\CheckHandler.ashx.cs">
+      <DependentUpon>CheckHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Order\OrderFileHandler.ashx.cs">
+      <DependentUpon>OrderFileHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Order\OrderHandler.ashx.cs">
+      <DependentUpon>OrderHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Order\OrderUpdate.ashx.cs">
+      <DependentUpon>OrderUpdate.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Order\Report\OrderReport.ashx.cs">
+      <DependentUpon>OrderReport.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Order\Report\OrderReportOfList.ashx.cs">
+      <DependentUpon>OrderReportOfList.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Order\Report\OrderReportOfWinton.ashx.cs">
+      <DependentUpon>OrderReportOfWinton.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Power\Empl.ashx.cs">
+      <DependentUpon>Empl.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Power\EmplMassage.ashx.cs">
+      <DependentUpon>EmplMassage.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Power\Group.ashx.cs">
+      <DependentUpon>Group.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Power\MenuPower.ashx.cs">
+      <DependentUpon>MenuPower.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Power\Power.ashx.cs">
+      <DependentUpon>Power.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Prod\ProdHandler.ashx.cs">
+      <DependentUpon>ProdHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\QA.ashx.cs">
+      <DependentUpon>QA.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\QRCode.ashx.cs">
+      <DependentUpon>QRCode.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\returnLogistics.ashx.cs">
+      <DependentUpon>returnLogistics.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\SearchClass\SearchClassDetailHandler.ashx.cs">
+      <DependentUpon>SearchClassDetailHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\SearchClass\SearchClassHandler.ashx.cs">
+      <DependentUpon>SearchClassHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\sendEmail.ashx.cs">
+      <DependentUpon>sendEmail.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\SetDeviceProd.ashx.cs">
+      <DependentUpon>SetDeviceProd.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\SetTemplate.ashx.cs">
+      <DependentUpon>SetTemplate.ashx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="api\ShopItem\HighlightsShopHandler.ashx.cs">
+      <DependentUpon>HighlightsShopHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Shopping\getOrder.ashx.cs">
+      <DependentUpon>getOrder.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Shopping\ShoppingCar.ashx.cs">
+      <DependentUpon>ShoppingCar.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Store.ashx.cs">
+      <DependentUpon>Store.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\StoreSet\StoreSetHandler.ashx.cs">
+      <DependentUpon>StoreSetHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\tabletest.aspx.cs">
+      <DependentUpon>tabletest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="api\tabletest.aspx.designer.cs">
+      <DependentUpon>tabletest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="api\ThirdParty\ThirdPartyHandler.ashx.cs">
+      <DependentUpon>ThirdPartyHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\User.ashx.cs">
+      <DependentUpon>User.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\User2.ashx.cs">
+      <DependentUpon>User2.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\ConnSetting.cs" />
+    <Content Include="App_Code\EtherCode.cs" />
+    <Compile Include="Concatenation\IKPDLogin.ashx.cs">
+      <DependentUpon>IKPDLogin.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Concatenation\iKPDLoginVerification.aspx.cs">
+      <DependentUpon>iKPDLoginVerification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Concatenation\iKPDLoginVerification.aspx.designer.cs">
+      <DependentUpon>iKPDLoginVerification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\BankStatement.aspx.cs">
+      <DependentUpon>BankStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\BankStatement.aspx.designer.cs">
+      <DependentUpon>BankStatement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EIPLogin.aspx.cs">
+      <DependentUpon>EIPLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EIPLogin.aspx.designer.cs">
+      <DependentUpon>EIPLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\CmdParameter.cs" />
+    <Compile Include="Library\Analytics\Aims.cs" />
+    <Compile Include="Library\Analytics\CustTable.cs" />
+    <Compile Include="Library\Analytics\Flow.cs" />
+    <Compile Include="Library\Analytics\FlowCheckItem.cs" />
+    <Compile Include="Library\Analytics\KPDData.cs" />
+    <Compile Include="Library\Beacon.cs" />
+    <Compile Include="Library\CheckToken.cs" />
+    <Compile Include="Library\CommandSetting.cs" />
+    <Compile Include="Library\Component\CokerComponentList.cs" />
+    <Compile Include="Library\Component\CokerCoupon.cs" />
+    <Compile Include="Library\Component\CokerFence.cs" />
+    <Compile Include="Library\Component\CokerFile.cs" />
+    <Compile Include="Library\Component\CokerGoogleMap.cs" />
+    <Compile Include="Library\Component\CokerImg.cs" />
+    <Compile Include="Library\Component\CokerText.cs" />
+    <Compile Include="Library\Component\CokerYoutude.cs" />
+    <Compile Include="Library\Component\Component.cs" />
+    <Compile Include="Library\Component\ObjectItems.cs" />
+    <Compile Include="Library\Coupon\CouponDetail.cs" />
+    <Compile Include="Library\Coupon\CouponList.cs" />
+    <Compile Include="Library\Coupon\CouponUseList.cs" />
+    <Compile Include="Library\CustFormLibary\CustForm.cs" />
+    <Compile Include="Library\CustFormLibary\FormColumns.cs" />
+    <Compile Include="Library\CustFormLibary\FormData.cs" />
+    <Compile Include="Library\CustFormLibary\FromQuestionType.cs" />
+    <Compile Include="Library\EmailCont\EmailCont.cs" />
+    <Compile Include="Library\EmailCont\EmailContResponse.cs" />
+    <Compile Include="Library\EmailCont\SmtpServer.cs" />
+    <Compile Include="Library\Enumeration\BtoBShipModeEnum.cs" />
+    <Compile Include="Library\Enumeration\EnableEnum.cs" />
+    <Compile Include="Library\Enumeration\FormTypeEnum.cs" />
+    <Compile Include="Library\Enumeration\HardWareClassEunm.cs" />
+    <Compile Include="Library\Enumeration\ORderStatusEnum.cs" />
+    <Compile Include="Library\Enumeration\ProdTaxEnum.cs" />
+    <Compile Include="Library\Enumeration\TemperatureEnum.cs" />
+    <Compile Include="Library\file\FilesStatus.cs" />
+    <Compile Include="Library\file\FileStatus.cs" />
+    <Compile Include="Library\FooTable.cs" />
+    <Compile Include="Library\IKPDCust.cs" />
+    <Compile Include="Library\MessageBoard\IMessageBoard.cs" />
+    <Compile Include="Library\MessageBoard\IMessageBoardList.cs" />
+    <Compile Include="Library\Order\Affiliates.cs" />
+    <Compile Include="Library\Order\BankStatement\BankStatementDetial.cs" />
+    <Compile Include="Library\Order\BankStatement\BankStatementMaster.cs" />
+    <Compile Include="Library\Order\BankStatement\BankStatementOutput.cs" />
+    <Compile Include="Library\Order\Check\CheckAddDto.cs" />
+    <Compile Include="Library\Order\Check\CheckArgProdList.cs" />
+    <Compile Include="Library\Order\Check\CheckList.cs" />
+    <Compile Include="Library\Order\Check\CheckOrder.cs" />
+    <Compile Include="Library\Order\Check\checkOrderType.cs" />
+    <Compile Include="Library\Order\Check\checkProdType.cs" />
+    <Compile Include="Library\Order\Check\OrderCheck.cs" />
+    <Compile Include="Library\Order\Check\OrderHdItem.cs" />
+    <Compile Include="Library\Order\Check\OrderHdViewItem.cs" />
+    <Compile Include="Library\Order\FinishOrder.cs" />
+    <Compile Include="Library\Order\MarketTaiwan.cs" />
+    <Compile Include="Library\Order\OrderDetail.cs" />
+    <Compile Include="Library\Order\OrderHead.cs" />
+    <Compile Include="Library\Order\OrderMemo.cs" />
+    <Compile Include="Library\Order\ResponseOrderHead.cs" />
+    <Compile Include="Library\Power\EmplItems.cs" />
+    <Compile Include="Library\Power\GroupResponse.cs" />
+    <Compile Include="Library\Power\PowerItems.cs" />
+    <Compile Include="Library\Prod\ProdList.cs" />
+    <Compile Include="Library\Report\ListOrderReport.cs" />
+    <Compile Include="Library\Report\NPOIReportExcel.cs" />
+    <Compile Include="Library\responseJson.cs" />
+    <Compile Include="Library\DataBind\DataBindInterface.cs" />
+    <Compile Include="Library\HelpPage.cs" />
+    <Compile Include="Library\Hotel.cs" />
+    <Compile Include="Library\Mail.cs" />
+    <Compile Include="Library\Menu.cs" />
+    <Compile Include="Library\MyTrip.cs" />
+    <Compile Include="Library\News.cs" />
+    <Compile Include="Library\Node.cs" />
+    <Compile Include="Library\Product.cs" />
+    <Compile Include="Library\Range.cs" />
+    <Compile Include="Library\RootObject.cs" />
+    <Compile Include="Library\Search.cs" />
+    <Compile Include="Library\SearchClass\CustSearchBind.cs" />
+    <Compile Include="Library\SearchClass\CustSearchBindCheckItem.cs" />
+    <Compile Include="Library\SearchClass\CustSearchBindDto.cs" />
+    <Compile Include="Library\SearchClass\CustSearchDto.cs" />
+    <Compile Include="Library\SearchClass\SearchClass.cs" />
+    <Compile Include="Library\SearchClass\SearchClassDetailDto.cs" />
+    <Compile Include="Library\SearchClass\SearchClassDetailInputOfInsertDto.cs" />
+    <Compile Include="Library\ServiceRecord.cs" />
+    <Compile Include="Library\Shop.cs" />
+    <Compile Include="Library\ShopLib\HighlightsShop.cs" />
+    <Compile Include="Library\ShoppingCar\ShoppingCarInput.cs" />
+    <Compile Include="Library\ShoppingCar\ShoppingCarItem.cs" />
+    <Compile Include="Library\ShoppingCar\ShoppingCarOutput.cs" />
+    <Compile Include="Library\StoreSet\StoreSetDetail.cs" />
+    <Compile Include="Library\StoreSet\StoreSetItem.cs" />
+    <Compile Include="Library\StoreSet\StoreSetList.cs" />
+    <Compile Include="Library\Subscriber.cs" />
+    <Compile Include="Library\ThirdParty\PaymentTypeItem.cs" />
+    <Compile Include="Library\ThirdParty\ThirdPartyItem.cs" />
+    <Compile Include="Library\ThirdParty\ThirdPartyKeypair.cs" />
+    <Compile Include="Library\ThirdParty\ThirdPartyList.cs" />
+    <Compile Include="Library\TokenItem.cs" />
+    <Compile Include="Library\Traffic.cs" />
+    <Compile Include="Library\Trip.cs" />
+    <Compile Include="Library\User.cs" />
+    <Compile Include="Library\Voices.cs" />
+    <Compile Include="Library\Winton\WintonOrder.cs" />
+    <Compile Include="Library\XMLHelper.cs" />
+    <Compile Include="map.aspx.cs">
+      <DependentUpon>map.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="map.aspx.designer.cs">
+      <DependentUpon>map.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="common\APIandDB.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Coupon.aspx.cs">
+      <DependentUpon>Coupon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Coupon.aspx.designer.cs">
+      <DependentUpon>Coupon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Credit.aspx.cs">
+      <DependentUpon>Credit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Credit.aspx.designer.cs">
+      <DependentUpon>Credit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dealer.aspx.cs">
+      <DependentUpon>Dealer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dealer.aspx.designer.cs">
+      <DependentUpon>Dealer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GAPI\indexmeal.aspx.cs">
+      <DependentUpon>indexmeal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GAPI\indexmeal.aspx.designer.cs">
+      <DependentUpon>indexmeal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetVirtualProd.ashx.cs">
+      <DependentUpon>GetVirtualProd.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Library\booking.cs" />
+    <Compile Include="Library\FB.cs" />
+    <Compile Include="Library\Game.cs" />
+    <Compile Include="Library\Logistics.cs" />
+    <Compile Include="Library\Member.cs" />
+    <Compile Include="Library\PostForm.cs" />
+    <Compile Include="Library\Products.cs" />
+    <Compile Include="Library\SMS.cs" />
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MealLogin.aspx.cs">
+      <DependentUpon>MealLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MealLogin.aspx.designer.cs">
+      <DependentUpon>MealLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Member.aspx.cs">
+      <DependentUpon>Member.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Member.aspx.designer.cs">
+      <DependentUpon>Member.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MemberBonus.aspx.cs">
+      <DependentUpon>MemberBonus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MemberBonus.aspx.designer.cs">
+      <DependentUpon>MemberBonus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderList.aspx.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderList.aspx.designer.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderList2.aspx.cs">
+      <DependentUpon>OrderList2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderList2.aspx.designer.cs">
+      <DependentUpon>OrderList2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderResetPay.ashx.cs">
+      <DependentUpon>OrderResetPay.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderLogistics.aspx.cs">
+      <DependentUpon>OrderLogistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderLogistics.aspx.designer.cs">
+      <DependentUpon>OrderLogistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="orderqa.aspx.cs">
+      <DependentUpon>orderqa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="orderqa.aspx.designer.cs">
+      <DependentUpon>orderqa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.cs" />
+    <Compile Include="Products.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QA.aspx.cs">
+      <DependentUpon>QA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QA.aspx.designer.cs">
+      <DependentUpon>QA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QrCode.aspx.cs">
+      <DependentUpon>QrCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QrCode.aspx.designer.cs">
+      <DependentUpon>QrCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Ldap\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceRecordList.aspx.cs">
+      <DependentUpon>ServiceRecordList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ServiceRecordList.aspx.designer.cs">
+      <DependentUpon>ServiceRecordList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shopping2.aspx.cs">
+      <DependentUpon>Shopping2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopping2.aspx.designer.cs">
+      <DependentUpon>Shopping2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shoppingcar.cs" />
+    <Compile Include="StoreType2.aspx.cs">
+      <DependentUpon>StoreType2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StoreType2.aspx.designer.cs">
+      <DependentUpon>StoreType2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testallpay.aspx.cs">
+      <DependentUpon>testallpay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testallpay.aspx.designer.cs">
+      <DependentUpon>testallpay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testallpayreturn.aspx.cs">
+      <DependentUpon>testallpayreturn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testallpayreturn.aspx.designer.cs">
+      <DependentUpon>testallpayreturn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testdll.aspx.cs">
+      <DependentUpon>testdll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testdll.aspx.designer.cs">
+      <DependentUpon>testdll.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestForm.aspx.cs">
+      <DependentUpon>TestForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestForm.aspx.designer.cs">
+      <DependentUpon>TestForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VirtualOrderList.aspx.cs">
+      <DependentUpon>VirtualOrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VirtualOrderList.aspx.designer.cs">
+      <DependentUpon>VirtualOrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\CRMLoginWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Content Include="App_Code\FilesStatus.cs" />
+    <Content Include="App_Code\LOG.cs" />
+    <Compile Include="ExcelHelper.cs" />
+    <Compile Include="FBAPI\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FBAPI\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForgetPassword.aspx.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPassword.aspx.designer.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GAPI\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GAPI\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetStr.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HinetAPI\checkEmail.aspx.cs">
+      <DependentUpon>checkEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HinetAPI\checkEmail.aspx.designer.cs">
+      <DependentUpon>checkEmail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HinetAPI\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HinetAPI\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MemberAdd.aspx.cs">
+      <DependentUpon>MemberAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MemberAdd.aspx.designer.cs">
+      <DependentUpon>MemberAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MemberEdit.aspx.cs">
+      <DependentUpon>MemberEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MemberEdit.aspx.designer.cs">
+      <DependentUpon>MemberEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Shopping.aspx.cs">
+      <DependentUpon>Shopping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopping.aspx.designer.cs">
+      <DependentUpon>Shopping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SSO.asmx.cs">
+      <DependentUpon>SSO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Token.cs" />
+    <Compile Include="Web References\CockerAdmin\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\CRMebgWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="api\File\" />
+    <Folder Include="App_Browsers\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Ldap\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="views\shared\_html5shiv.cshtml" />
+    <Content Include="ValidateCode.ashx" />
+    <None Include="Web References\CockerAdmin\CockerAdmin.wsdl" />
+    <None Include="Web References\CockerAdmin\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\CRMebgWebService\EbgCrmWebServiceApi.wsdl" />
+    <None Include="Web References\CRMebgWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\CRMebgWebService\Result.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="C:\Inetpub\EbgCrmWebServiceApi.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\CRMebgWebService\</RelPath>
+      <UpdateFromURL>C:\Inetpub\EbgCrmWebServiceApi.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ECSSO_CRMebgWebService_EbgCrmWebServiceApi</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://admin.cocker.com.tw/CockerAdmin.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\CockerAdmin\</RelPath>
+      <UpdateFromURL>http://admin.cocker.com.tw/CockerAdmin.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ECSSO_CockerAdmin_CockerAdmin</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://cmw.hisales.hinet.net/ISVAccountAuthenticationService/service.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\CRMLoginWebService\</RelPath>
+      <UpdateFromURL>https://cmw.hisales.hinet.net/ISVAccountAuthenticationService/service.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ECSSO_CRMLoginWebService_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\MemberAdd.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\MemberAdd.aspx.zh-tw.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\MemberAdd.aspx.en-us.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ForgetPassword.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ForgetPassword.aspx.en-us.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ForgetPassword.aspx.zh-tw.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Login.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Login.aspx.zh-tw.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Login.aspx.en-us.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ForgetPassword.aspx.zh-cn.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Login.aspx.zh-cn.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\MemberAdd.aspx.zh-cn.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Shopping.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Shopping.aspx.en-us.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Shopping.aspx.zh-cn.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Shopping.aspx.zh-tw.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Member.aspx.en-us.resx" />
+    <Content Include="App_LocalResources\Member.aspx.zh-cn.resx" />
+    <Content Include="App_LocalResources\Member.aspx.zh-tw.resx" />
+    <Content Include="App_LocalResources\MemberEdit.aspx.resx" />
+    <Content Include="App_LocalResources\MemberEdit.aspx.zh-cn.resx" />
+    <Content Include="App_LocalResources\MemberEdit.aspx.en-us.resx" />
+    <Content Include="App_LocalResources\MemberEdit.aspx.zh-tw.resx" />
+    <Content Include="App_LocalResources\Dealer.aspx.resx" />
+    <Content Include="App_LocalResources\Dealer.aspx.zh-cn.resx" />
+    <Content Include="App_LocalResources\Dealer.aspx.zh-tw.resx" />
+    <Content Include="App_LocalResources\Dealer.aspx.en-us.resx" />
+    <Content Include="App_LocalResources\MemberBonus.aspx.resx" />
+    <Content Include="App_LocalResources\MemberBonus.aspx.zh-cn.resx" />
+    <Content Include="App_LocalResources\MemberBonus.aspx.en-us.resx" />
+    <Content Include="App_LocalResources\MemberBonus.aspx.zh-tw.resx" />
+    <Content Include="App_LocalResources\Dealer.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\ForgetPassword.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\Login.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\Member.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\MemberAdd.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\MemberBonus.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\MemberEdit.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\OrderList.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\MealLogin.aspx.resx" />
+    <Content Include="App_LocalResources\Dealer.aspx.ja-jp.resx" />
+    <Content Include="App_LocalResources\ForgetPassword.aspx.ja-jp.resx" />
+    <Content Include="App_LocalResources\Login.aspx.ja-jp.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\Member.aspx.ja-jp.resx" />
+    <Content Include="App_LocalResources\MemberAdd.aspx.ja-jp.resx" />
+    <Content Include="App_LocalResources\MemberBonus.aspx.ja-jp.resx" />
+    <EmbeddedResource Include="App_LocalResources\OrderList.aspx.en-us.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\OrderList.aspx.zh-cn.resx" />
+    <EmbeddedResource Include="App_LocalResources\OrderList.aspx.zh-tw.resx" />
+    <Content Include="App_LocalResources\OrderList.aspx.resx" />
+    <Content Include="App_LocalResources\OrderList2.aspx.resx" />
+    <Content Include="App_LocalResources\OrderList2.aspx.zh-tw.resx" />
+    <Content Include="App_LocalResources\OrderList2.aspx.zh-cn.resx" />
+    <Content Include="App_LocalResources\OrderList2.aspx.en-us.resx" />
+    <Content Include="App_LocalResources\QA.aspx.resx" />
+    <Content Include="App_LocalResources\QA.aspx.en-us.resx" />
+    <Content Include="App_LocalResources\QA.aspx.zh-tw.resx" />
+    <Content Include="App_LocalResources\QA.aspx.zh-cn.resx" />
+    <Content Include="App_LocalResources\OrderList2.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\QA.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\ResetPassword.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\ResetPassword.aspx.zh-tw.resx" />
+    <Content Include="App_LocalResources\ResetPassword.aspx.zh-cn.resx" />
+    <Content Include="App_LocalResources\ResetPassword.aspx.en-us.resx" />
+    <Content Include="App_LocalResources\ResetPassword.aspx.resx" />
+    <Content Include="App_LocalResources\Shopping.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\VirtualOrderList.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\Shopping2.aspx.resx" />
+    <Content Include="App_LocalResources\Shopping2.aspx.en-us.resx" />
+    <Content Include="App_LocalResources\Shopping2.aspx.vi-vn.resx" />
+    <Content Include="App_LocalResources\Shopping2.aspx.zh-cn.resx" />
+    <Content Include="App_LocalResources\Shopping2.aspx.zh-tw.resx" />
+    <Content Include="App_LocalResources\StoreType2.aspx.resx" />
+    <EmbeddedResource Include="App_LocalResources\VirtualOrderList.aspx.en-us.resx" />
+    <EmbeddedResource Include="App_LocalResources\VirtualOrderList.aspx.zh-cn.resx" />
+    <EmbeddedResource Include="App_LocalResources\VirtualOrderList.aspx.zh-tw.resx" />
+    <EmbeddedResource Include="App_LocalResources\VirtualOrderList.aspx.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Ldap\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SpeechLib">
+      <Guid>{C866CA3A-32F7-11D2-9602-00C04F8EE628}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>28620</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

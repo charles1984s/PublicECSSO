@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:tns="http://ws.direk.com" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" targetNamespace="http://ws.direk.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.direk.com">
+      <xsd:element name="getAttr2">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in2" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in3" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAttr2Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="verifySessionId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="verifySessionIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="authUser3">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in2" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="authUser3Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="authUser4">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in2" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in3" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="authUser4Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="verifyUserName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="verifyUserNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="verifySessionIdReturnAttr">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="verifySessionIdReturnAttrResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="adminGetAttr">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in2" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in3" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in4" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="adminGetAttrResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="authUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="authUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getFile">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getFileResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:base64Binary" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sessionRefresh">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sessionRefreshResponse">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="Auth">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AuthResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="authUser2">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="authUser2Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAttr">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in2" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAttrResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAttr2Response">
+    <wsdl:part name="parameters" element="tns:getAttr2Response" />
+  </wsdl:message>
+  <wsdl:message name="sessionRefreshResponse">
+    <wsdl:part name="parameters" element="tns:sessionRefreshResponse" />
+  </wsdl:message>
+  <wsdl:message name="getFileResponse">
+    <wsdl:part name="parameters" element="tns:getFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="adminGetAttrRequest">
+    <wsdl:part name="parameters" element="tns:adminGetAttr" />
+  </wsdl:message>
+  <wsdl:message name="AuthRequest">
+    <wsdl:part name="parameters" element="tns:Auth" />
+  </wsdl:message>
+  <wsdl:message name="sessionRefreshRequest">
+    <wsdl:part name="parameters" element="tns:sessionRefresh" />
+  </wsdl:message>
+  <wsdl:message name="getAttr2Request">
+    <wsdl:part name="parameters" element="tns:getAttr2" />
+  </wsdl:message>
+  <wsdl:message name="authUser3Response">
+    <wsdl:part name="parameters" element="tns:authUser3Response" />
+  </wsdl:message>
+  <wsdl:message name="verifySessionIdRequest">
+    <wsdl:part name="parameters" element="tns:verifySessionId" />
+  </wsdl:message>
+  <wsdl:message name="verifySessionIdReturnAttrResponse">
+    <wsdl:part name="parameters" element="tns:verifySessionIdReturnAttrResponse" />
+  </wsdl:message>
+  <wsdl:message name="authUser2Response">
+    <wsdl:part name="parameters" element="tns:authUser2Response" />
+  </wsdl:message>
+  <wsdl:message name="getFileRequest">
+    <wsdl:part name="parameters" element="tns:getFile" />
+  </wsdl:message>
+  <wsdl:message name="AuthResponse">
+    <wsdl:part name="parameters" element="tns:AuthResponse" />
+  </wsdl:message>
+  <wsdl:message name="authUser2Request">
+    <wsdl:part name="parameters" element="tns:authUser2" />
+  </wsdl:message>
+  <wsdl:message name="adminGetAttrResponse">
+    <wsdl:part name="parameters" element="tns:adminGetAttrResponse" />
+  </wsdl:message>
+  <wsdl:message name="verifyUserNameResponse">
+    <wsdl:part name="parameters" element="tns:verifyUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="authUser4Response">
+    <wsdl:part name="parameters" element="tns:authUser4Response" />
+  </wsdl:message>
+  <wsdl:message name="verifySessionIdReturnAttrRequest">
+    <wsdl:part name="parameters" element="tns:verifySessionIdReturnAttr" />
+  </wsdl:message>
+  <wsdl:message name="verifyUserNameRequest">
+    <wsdl:part name="parameters" element="tns:verifyUserName" />
+  </wsdl:message>
+  <wsdl:message name="getAttrRequest">
+    <wsdl:part name="parameters" element="tns:getAttr" />
+  </wsdl:message>
+  <wsdl:message name="getAttrResponse">
+    <wsdl:part name="parameters" element="tns:getAttrResponse" />
+  </wsdl:message>
+  <wsdl:message name="authUserRequest">
+    <wsdl:part name="parameters" element="tns:authUser" />
+  </wsdl:message>
+  <wsdl:message name="authUser4Request">
+    <wsdl:part name="parameters" element="tns:authUser4" />
+  </wsdl:message>
+  <wsdl:message name="authUser3Request">
+    <wsdl:part name="parameters" element="tns:authUser3" />
+  </wsdl:message>
+  <wsdl:message name="verifySessionIdResponse">
+    <wsdl:part name="parameters" element="tns:verifySessionIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="authUserResponse">
+    <wsdl:part name="parameters" element="tns:authUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ILdapServicePortType">
+    <wsdl:operation name="getAttr2">
+      <wsdl:input name="getAttr2Request" message="tns:getAttr2Request" />
+      <wsdl:output name="getAttr2Response" message="tns:getAttr2Response" />
+    </wsdl:operation>
+    <wsdl:operation name="verifySessionId">
+      <wsdl:input name="verifySessionIdRequest" message="tns:verifySessionIdRequest" />
+      <wsdl:output name="verifySessionIdResponse" message="tns:verifySessionIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="authUser3">
+      <wsdl:input name="authUser3Request" message="tns:authUser3Request" />
+      <wsdl:output name="authUser3Response" message="tns:authUser3Response" />
+    </wsdl:operation>
+    <wsdl:operation name="authUser4">
+      <wsdl:input name="authUser4Request" message="tns:authUser4Request" />
+      <wsdl:output name="authUser4Response" message="tns:authUser4Response" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyUserName">
+      <wsdl:input name="verifyUserNameRequest" message="tns:verifyUserNameRequest" />
+      <wsdl:output name="verifyUserNameResponse" message="tns:verifyUserNameResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="verifySessionIdReturnAttr">
+      <wsdl:input name="verifySessionIdReturnAttrRequest" message="tns:verifySessionIdReturnAttrRequest" />
+      <wsdl:output name="verifySessionIdReturnAttrResponse" message="tns:verifySessionIdReturnAttrResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="adminGetAttr">
+      <wsdl:input name="adminGetAttrRequest" message="tns:adminGetAttrRequest" />
+      <wsdl:output name="adminGetAttrResponse" message="tns:adminGetAttrResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="authUser">
+      <wsdl:input name="authUserRequest" message="tns:authUserRequest" />
+      <wsdl:output name="authUserResponse" message="tns:authUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getFile">
+      <wsdl:input name="getFileRequest" message="tns:getFileRequest" />
+      <wsdl:output name="getFileResponse" message="tns:getFileResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sessionRefresh">
+      <wsdl:input name="sessionRefreshRequest" message="tns:sessionRefreshRequest" />
+      <wsdl:output name="sessionRefreshResponse" message="tns:sessionRefreshResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="Auth">
+      <wsdl:input name="AuthRequest" message="tns:AuthRequest" />
+      <wsdl:output name="AuthResponse" message="tns:AuthResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="authUser2">
+      <wsdl:input name="authUser2Request" message="tns:authUser2Request" />
+      <wsdl:output name="authUser2Response" message="tns:authUser2Response" />
+    </wsdl:operation>
+    <wsdl:operation name="getAttr">
+      <wsdl:input name="getAttrRequest" message="tns:getAttrRequest" />
+      <wsdl:output name="getAttrResponse" message="tns:getAttrResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ILdapServiceHttpBinding" type="tns:ILdapServicePortType">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAttr2">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAttr2Request">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAttr2Response">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifySessionId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="verifySessionIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="verifySessionIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authUser3">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="authUser3Request">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="authUser3Response">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authUser4">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="authUser4Request">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="authUser4Response">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyUserName">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="verifyUserNameRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="verifyUserNameResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifySessionIdReturnAttr">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="verifySessionIdReturnAttrRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="verifySessionIdReturnAttrResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adminGetAttr">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="adminGetAttrRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="adminGetAttrResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authUser">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="authUserRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="authUserResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFile">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getFileRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getFileResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sessionRefresh">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="sessionRefreshRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sessionRefreshResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Auth">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="AuthRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AuthResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authUser2">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="authUser2Request">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="authUser2Response">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttr">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAttrRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAttrResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ILdapService">
+    <wsdl:port name="ILdapServiceHttpPort" binding="tns:ILdapServiceHttpBinding">
+      <wsdlsoap:address location="http://eip.yunlin.gov.tw/ldapService.do" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

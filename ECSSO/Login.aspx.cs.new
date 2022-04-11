@@ -1,0 +1,668 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
+using System.Resources;
+using System.Reflection;
+using System.Threading;
+using System.Globalization;
+using Microsoft.Security.Application;
+using System.Text.RegularExpressions;
+using System.Net.Mail;
+using Newtonsoft.Json;
+using System.Web.Configuration;
+
+namespace ECSSO
+{
+    public partial class Login : System.Web.UI.Page
+    {
+        private string str_language = string.Empty;
+        #region //語系變換
+        protected override void InitializeCulture()
+        {
+            //此currentculture來自default.aspx頁面上兩個超連結的連結位址,見html部分
+
+            if (Request.Form["language"] != null)
+            {
+                str_language = Request.Form["language"].ToString();
+            }
+            else
+            {
+                if (Request.QueryString["language"] != null)
+                {
+                    str_language = Request.QueryString["language"].ToString();
+                }
+            }
+            if (str_language == "")
+            {
+                str_language = "zh-tw";
+            }
+
+            if (!String.IsNullOrEmpty(str_language))
+            {
+                //Nation - 決定了採用哪一種當地語系化資源，也就是使用哪種語言
+                //Culture - 決定各種資料類型是如何組織，如數位與日期
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(str_language);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(str_language);
+            }
+        }
+        #endregion
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            HtmlGenericControl objLink = new HtmlGenericControl("link");
+            objLink.Attributes.Add("rel", "stylesheet");
+            objLink.Attributes.Add("href", "SSOcss/" + str_language + "/login.css?id="+DateTime.Now.ToString("yyyyMMddHH"));
+            objLink.Attributes.Add("type", "text/css");
+            this.Page.Header.Controls.Add(objLink);
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            GetStr GS = new GetStr();
+            
+            if (!IsPostBack)
+            {
+                String setting = "";
+
+                #region 檢查POST參數
+                if (Request.Form["SiteID"] != null)
+                {
+                    if (Request.Form["SiteID"].ToString() != "")
+                    {
+                        this.siteid.Value = Request.Form["SiteID"].ToString();
+                    }
+                    else
+                    {
+                        Response.Write("<script type='text/javascript'>history.go(-1);</script>");
+                        Response.End();
+                    }
+                }
+                else
+                {
+                    if (Request.QueryString["SiteID"] != null)
+                    {
+                        if (Request.QueryString["SiteID"].ToString() != "")
+                        {
+                            this.siteid.Value = Request.QueryString["SiteID"].ToString();
+                        }
+                        else
+                        {
+                            Response.Write("<script type='text/javascript'>history.go(-1);</script>");
+                            Response.End();
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("<script type='text/javascript'>history.go(-1);</script>");
+                        Response.End();
+                    }
+                }
+
+
+                if (Request.Form["ReturnUrl"] != null)
+                {
+                    if (Request.Form["ReturnUrl"].ToString() != "")
+                    {
+                        this.returnurl.Value = Request.Form["ReturnUrl"].ToString();
+                    }
+                }
+                else
+                {
+                    if (Request.QueryString["ReturnUrl"] != null)
+                    {
+                        if (Request.QueryString["ReturnUrl"].ToString() != "")
+                        {
+                            this.returnurl.Value = Request.QueryString["ReturnUrl"].ToString();
+                        }
+                    }
+                }
+
+                if (Request.Form["VerCode"] != null)
+                {
+                    if (Request.Form["VerCode"].ToString() != "")
+                    {
+                        this.VerCode.Value = Request.Form["VerCode"].ToString();
+                    }
+                }
+                else
+                {
+                    if (Request.QueryString["VerCode"] != null)
+                    {
+                        if (Request.QueryString["VerCode"].ToString() != "")
+                        {
+                            this.VerCode.Value = Request.QueryString["VerCode"].ToString();
+                        }
+                    }
+                }
+
+                if (Request.Form["Url"] != null)
+                {
+                    if (Request.Form["Url"].ToString() != "")
+                    {
+                        this.weburl.Value = Request.Form["Url"].ToString();
+                    }
+                }
+                else
+                {
+                    if (Request.QueryString["Url"] != null)
+                    {
+                        if (Request.QueryString["Url"].ToString() != "")
+                        {
+                            this.weburl.Value = Request.QueryString["Url"].ToString();
+                        }
+                    }
+                }
+
+                String CheckM = "";
+                if (Request.Form["CheckM"] != null)
+                {
+                    if (Request.Form["CheckM"].ToString() != "")
+                    {
+                        CheckM = Encoder.HtmlEncode(Request.Form["CheckM"].ToString());
+                        this.Checkm.Value = Encoder.HtmlEncode(Request.Form["CheckM"].ToString());
+                    }
+                }
+                else
+                {
+                    if (Request.QueryString["CheckM"] != null)
+                    {
+                        if (Request.QueryString["CheckM"].ToString() != "")
+                        {
+                            CheckM = Encoder.HtmlEncode(Request.QueryString["CheckM"].ToString());
+                            this.Checkm.Value = Encoder.HtmlEncode(Request.QueryString["CheckM"].ToString());
+                        }
+                    }
+                }
+                #endregion
+                
+                if (GS.MD5Check(this.siteid.Value, CheckM))
+                {
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["sqlDB"].ToString()))
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand("select dbname,dbusername,dbpassword,web_url,fid from cocker_cust where id=@id", conn);
+                        cmd.Parameters.Add(new SqlParameter("@id", this.siteid.Value));
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        try
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    if (this.returnurl.Value == "")
+                                    {
+                                        this.returnurl.Value = "http://" + reader["web_url"].ToString();
+                                    }
+                                    if (this.weburl.Value == "")
+                                    {
+                                        this.weburl.Value = "http://" + reader["web_url"].ToString();
+                                        
+                                    }
+                                    this.fid.Value = reader["fid"].ToString();
+                                    if (Convert.ToInt16(reader["fid"].ToString()) > 0)
+                                    {
+                                        joinezsale.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        joinezsale.Visible = false;
+                                    }
+                                    setting = "data source=" + ConfigurationManager.AppSettings.Get("MemberApiUrl") + ";user id=" + reader["dbusername"].ToString() + "; password=" + reader["dbpassword"].ToString() + "; database=" + reader["dbname"].ToString();
+                                }
+                            }
+                            else
+                            {
+                                Response.Write("<script type='text/javascript'>history.go(-1);</script>");
+                            }
+                        }
+                        finally
+                        {
+                            reader.Close();
+                        }
+                    }
+
+                    using (SqlConnection conn = new SqlConnection(setting))
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand("select b.title,b.quicklogin,b.joinus,b.member_agree,b.defaultBenner1,b.back_top_logo from CurrentUseFrame as a left join head as b on a.id=b.hid", conn);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        try
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    WebTitle.Text = GS.ReplaceStr(reader[0].ToString());
+                                    Page.Title = GS.ReplaceStr(reader[0].ToString());
+                                    str_agree.InnerHtml = Server.HtmlDecode(Server.HtmlDecode(reader[3].ToString()));
+                                    HyperLink1.NavigateUrl = this.weburl.Value;
+                                    if (reader[4].ToString() != "")
+                                    {
+                                        if (reader[4].ToString().IndexOf("http://") > -1)
+                                        {
+                                            Image3.ImageUrl = Encoder.HtmlEncode(reader[4].ToString());
+                                        }
+                                        else
+                                        {
+                                            Image3.ImageUrl = this.weburl.Value + Encoder.HtmlEncode(reader[4].ToString());
+                                        }
+
+                                        WebTitle.Visible = false;
+                                    }
+                                    else
+                                    {
+                                        if (reader[5].ToString() != "")
+                                        {
+                                            if (reader[5].ToString().IndexOf("http://") > -1)
+                                            {
+                                                Image3.ImageUrl = Encoder.HtmlEncode(reader[5].ToString());
+                                            }
+                                            else
+                                            {
+                                                Image3.ImageUrl = this.weburl.Value + Encoder.HtmlEncode(reader[5].ToString());
+                                            }
+
+                                            WebTitle.Visible = false;
+                                        }
+                                        else
+                                        {
+                                            Image3.Visible = false;
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                        finally
+                        {
+                            reader.Close();
+                        }
+                    }
+
+                    CheckBox2.Text = "我同意加入" + WebConfigurationManager.AppSettings["O2OChName"] + "會員";
+                }
+                else {
+                    Response.Redirect(this.returnurl.Value);
+                }
+            }
+            else {
+                Page.Title = GS.ReplaceStr(WebTitle.Text);
+            }
+        }
+
+        #region 檢查帳號
+        protected void LinkButton1_Click1(object sender, EventArgs e)
+        {
+            GetStr GS = new GetStr();
+            #region 檢查輸入資料
+
+            String RegStr = @"09\d{2}\d{6}";
+            if (!GS.isright(this.CellPhone.Text, RegStr))
+            {
+                this.CheckCellPhone.Text = GetLocalResourceObject("StringResource9").ToString();
+                this.CheckCellPhone.Visible = true;
+            }
+            else
+            {
+                this.CheckCellPhone.Text = "";
+                this.CheckCellPhone.Visible = false;
+            }
+            #endregion
+            if (!this.CheckCellPhone.Visible)
+            {
+                String SiteID = this.siteid.Value;
+                String Type = "1";
+                String Items = @"{""ID"":""" + this.CellPhone.Text + @"""}";
+                String Setting = GS.GetSetting(SiteID);
+                String OrgName = GS.GetOrgName(Setting);
+                String param = "CheckM=" + GS.MD5Endode(Type + SiteID + OrgName) + "&SiteID=" + SiteID + "&Type=" + Type + "&Items=" + Items;
+                String FormUrl = WebConfigurationManager.AppSettings["Protocol"] + "://" + WebConfigurationManager.AppSettings["Server_Host"] + "/tat/api/account.ashx";
+                String result = GS.SendForm(FormUrl, param);
+                this.RID.Value = result;
+                if (result.IndexOf("error") >= 0)
+                {
+                    switch (result)
+                    {
+                        case "error:1":     //帳號重複,進入輸入密碼頁
+                            Label15.Visible = false;
+                            using (SqlConnection conn = new SqlConnection(Setting))
+                            {
+                                conn.Open();
+                                SqlCommand cmd = new SqlCommand("select ch_name from cust where id=@id", conn);
+                                cmd.Parameters.Add(new SqlParameter("@id", this.CellPhone.Text));
+                                SqlDataReader reader = cmd.ExecuteReader();
+                                try
+                                {
+                                    if (reader.HasRows)
+                                    {
+                                        while (reader.Read())
+                                        {
+                                            if (reader[0].ToString() == "")     //輸入資料
+                                            {
+                                                CellPhoneCode.Visible = false;
+                                                UserData.Visible = true;
+                                                step1Button.Visible = false;
+                                            }
+                                            else        //輸入密碼
+                                            {
+                                                step1Button.Visible = false;
+                                                loginButton.Visible = true;
+                                                Password.Visible = true;
+                                                CellPhone.ReadOnly = true;
+                                            }
+                                        }
+                                    }
+                                }
+                                finally
+                                {
+                                    reader.Close();
+                                }
+                            }
+                            break;
+                        case "error:2":     //DB儲存有誤
+                            Response.Write("<script language='javascript'>alert('儲存有誤');</script>");
+                            break;
+                        case "error:3":     //驗證碼錯誤
+                            Response.Write("<script language='javascript'>alert('驗證碼錯誤');</script>");
+                            break;
+                        case "error:4":     //傳遞參數不完整
+                            Response.Write("<script language='javascript'>alert('傳遞參數不完整');</script>");
+                            break;
+                        default:            //其他
+                            Response.Write("<script language='javascript'>alert('其他');</script>");
+                            break;
+                    }
+                }
+                else
+                {
+                    //註冊帳號,進入驗證碼頁
+                    step1Button.Visible = false;
+                    CellPhoneCodeButton.Visible = true;
+                    CellPhoneCode.Visible = true;
+                    CellPhone.ReadOnly = true;
+                    Label15.Visible = false;
+                    Response.Write("<script language='javascript'>alert('請輸入系統自動發送之簡訊驗證碼');</script>");
+                }
+            }
+        }
+        #endregion
+
+        #region 簡訊碼驗證
+        protected void LinkButton3_Click1(object sender, EventArgs e)
+        {
+            GetStr GS = new GetStr();
+            #region 檢查輸入資料            
+            
+            String RegStr = @"09\d{2}\d{6}";
+            if (!GS.isright(this.CellPhone.Text, RegStr))
+            {
+                this.CheckCellPhone.Text = GetLocalResourceObject("StringResource9").ToString();
+                this.CheckCellPhone.Visible = true;
+            }
+            else
+            {
+                this.CheckCellPhone.Text = "";
+                this.CheckCellPhone.Visible = false;
+            }
+            RegStr = @"\d{4}";
+            if (!GS.isright(this.TextBox1.Text, RegStr) || this.TextBox1.Text.Length != 4)
+            {
+                this.CheckCellPhoneCode.Text = GetLocalResourceObject("StringResource4").ToString();
+                this.CheckCellPhoneCode.Visible = true;
+            }
+            else
+            {
+                this.CheckCellPhoneCode.Text = "";
+                this.CheckCellPhoneCode.Visible = false;
+            }
+            #endregion
+
+            if (!this.CheckCellPhone.Visible && !this.CheckCellPhoneCode.Visible)
+            {
+                String SiteID = this.siteid.Value;
+                String Type = "4";
+                String Items = @"{""ID"":""" + this.CellPhone.Text + @""",""PhoneCode"":""" + this.TextBox1.Text + @"""}";
+                String Setting = GS.GetSetting(SiteID);
+                String OrgName = GS.GetOrgName(Setting);
+                String param = "CheckM=" + GS.MD5Endode(Type + SiteID + OrgName) + "&SiteID=" + SiteID + "&Type=" + Type + "&Items=" + Items;
+                String FormUrl = WebConfigurationManager.AppSettings["Protocol"] + "://" + WebConfigurationManager.AppSettings["Server_Host"] + "/tat/api/account.ashx";
+                String result = GS.SendForm(FormUrl, param);
+                if (result == "success") //驗證成功
+                {
+                    CellPhoneCode.Visible = false;
+                    UserData.Visible = true;
+                    LinkButton3.Visible = false;
+                    Response.Write("<script language='javascript'>alert('驗證成功,請輸入您的登入資料');</script>");
+                }
+                else
+                {
+                    if (result.IndexOf("error") >= 0)
+                    {
+                        switch (result)
+                        {
+                            case "error:1":     //簡訊驗證失敗,重發簡訊驗證碼
+                                Items = @"{""ID"":""" + this.CellPhone.Text + @"""}";
+                                Type = "1";
+                                param = "CheckM=" + GS.MD5Endode(Type + SiteID + OrgName) + "&SiteID=" + SiteID + "&Type=" + Type + "&Items=" + Items;
+                                GS.SendForm(FormUrl, param);
+                                Response.Write("<script language='javascript'>alert('驗證失敗,系統將重新發送簡訊驗證碼');</script>");
+                                break;
+                            case "error:2":     //DB儲存有誤
+                                Response.Write("<script language='javascript'>alert('儲存有誤');</script>");
+                                break;
+                            case "error:3":     //驗證碼錯誤
+                                Response.Write("<script language='javascript'>alert('驗證碼錯誤');</script>");
+                                break;
+                            case "error:4":     //傳遞參數不完整
+                                Response.Write("<script language='javascript'>alert('傳遞參數不完整');</script>");
+                                break;
+                            default:            //其他
+                                Response.Write("<script language='javascript'>alert('其他');</script>");
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region 會員登入
+        protected void LinkButton2_Click1(object sender, EventArgs e)
+        {
+            #region 檢查參數是否填寫
+            if (this.CellPhone.Text == "")
+            {
+                this.CheckCellPhone.Text = GetLocalResourceObject("StringResource1").ToString();
+                this.CheckCellPhone.Visible = true;
+            }
+            else
+            {
+                this.CheckCellPhone.Text = "";
+                this.CheckCellPhone.Visible = false;
+            }
+
+            if (this.UserPwd.Text == "")
+            {
+                this.CheckUserPwd.Text = GetLocalResourceObject("StringResource2").ToString();
+                this.CheckUserPwd.Visible = true;
+            }
+            else
+            {
+                this.CheckUserPwd.Text = "";
+                this.CheckUserPwd.Visible = false;
+            }
+            #endregion
+            if (!this.CheckCellPhone.Visible && !this.CheckUserPwd.Visible)
+            {
+                GetStr getstr = new GetStr();
+                String setting = getstr.GetSetting(this.siteid.Value);
+
+                using (SqlConnection conn = new SqlConnection(setting))
+                {
+                    conn.Open();
+                    String Str_sql = "sp_CheckPassWord @pwd,@id";
+                    SqlCommand cmd = new SqlCommand(Str_sql, conn);
+                    cmd.Parameters.Add(new SqlParameter("@pwd", this.UserPwd.Text));
+                    cmd.Parameters.Add(new SqlParameter("@id", this.CellPhone.Text));
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    try
+                    {
+                        if (reader.HasRows)
+                        {
+                            Token token = new Token();
+                            String TokenID = token.LoginToken(this.CellPhone.Text, setting);
+                            if (TokenID == "")
+                            {
+                                Response.Write("<script type='text/javascript'>alert('" + GetLocalResourceObject("StringResource3").ToString() + "');</script>");
+                                //Label1.Text = "登入失敗。帳號或密碼錯誤，或是您尚未成為會員。";
+                                //this.Label1.Visible = true;
+                            }
+                            else
+                            {
+                                if (this.returnurl.Value.Replace("&", "////").Split('?').Length > 1)
+                                {
+                                    Response.Redirect(this.weburl.Value + "/" + getstr.GetLanString(this.language.Value) + "/log.asp?id=" + this.CellPhone.Text + "&VerCode=" + this.VerCode.Value + "&tokenid=" + TokenID + "&ReturnUrl=" + this.returnurl.Value.Replace("&", "////").Split('?')[1]);
+                                }
+                                else
+                                {
+                                    Response.Redirect(this.weburl.Value + "/" + getstr.GetLanString(this.language.Value) + "/log.asp?id=" + this.CellPhone.Text + "&VerCode=" + this.VerCode.Value + "&tokenid=" + TokenID + "&ReturnUrl=au_id=a////sub_id=b");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //登入失敗。帳號或密碼錯誤，或是您尚未成為會員。
+                            Response.Write("<script type='text/javascript'>alert('" + GetLocalResourceObject("StringResource3").ToString() + "');</script>");
+                        }
+                    }
+                    finally
+                    {
+                        reader.Close();
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region 修改會員資料
+        protected void LinkButton4_Click1(object sender, EventArgs e)
+        {
+            GetStr GS = new GetStr();
+            #region 檢查輸入資料
+            if (!this.CheckBox1.Checked)
+            {
+                this.CheckService.Text = GetLocalResourceObject("StringResource29").ToString();
+                this.CheckService.Visible = true;
+            }
+            else
+            {
+                this.CheckService.Text = "";
+                this.CheckService.Visible = false;
+            } 
+            String RegStr = @"^[0-9a-zA-Z_]{4,10}$";
+            if (!GS.isright(this.Pwd.Text, RegStr))
+            {
+                this.CheckPwd.Text = GetLocalResourceObject("StringResource31").ToString();
+                this.CheckPwd.Visible = true;
+            }
+            else
+            {
+                this.CheckPwd.Text = "";
+                this.CheckPwd.Visible = false;
+            }
+            if (this.ChkPwd.Text != this.Pwd.Text)
+            {
+                this.CheckPwd2.Text = GetLocalResourceObject("StringResource5").ToString();
+                this.CheckPwd2.Visible = true;
+            }
+            else
+            {
+                this.CheckPwd2.Text = "";
+                this.CheckPwd2.Visible = false;
+            }
+            #endregion
+
+            if (!this.CheckPwd.Visible && !this.CheckPwd2.Visible && !this.CheckService.Visible)
+            {
+                String SiteID = this.siteid.Value;
+                String Type = "2";
+                String Items = @"{""ID"":""" + this.CellPhone.Text + @""",""Pwd"":""" + this.Pwd.Text + @""",""Name"":""" + this.CellPhone.Text + @""",""Birth"":""1911-01-01"",""Gender"":""1""}";
+                String Setting = GS.GetSetting(SiteID);
+                String OrgName = GS.GetOrgName(Setting);
+                String param = "CheckM=" + GS.MD5Endode(Type + SiteID + OrgName) + "&SiteID=" + SiteID + "&Type=" + Type + "&Items=" + Items;
+                String FormUrl = WebConfigurationManager.AppSettings["Protocol"] + "://" + WebConfigurationManager.AppSettings["Server_Host"] + "/tat/api/account.ashx";
+                String result = GS.SendForm(FormUrl, param);
+                if (result == "success") //儲存成功,直接登入~
+                {
+                    if (Convert.ToInt16(this.fid.Value) > 0)
+                    {
+                        #region 同意加入母站會員
+                        if (this.CheckBox2.Checked)
+                        {
+                            Library.Member.Data member = new Library.Member.Data
+                            {
+                                ID = this.CellPhone.Text,
+                                Pwd = this.Pwd.Text,
+                                ChName = this.CellPhone.Text,
+                                Sex = "1",
+                                Email = "",//this.Email.Text,
+                                Birth = "1911-01-01",
+                                Tel = "",//this.Tel.Text,
+                                CellPhone = this.CellPhone.Text,
+                                Addr = "",//this.ddlCity.SelectedItem.Text + this.ddlCountry.SelectedItem.Text + this.address.Text,
+                                C_ZIP = "",//this.ddlzip.SelectedItem.Text,
+                                Language = this.language.Value
+                            };
+
+                            param = "CheckM=" + GS.MD5Endode(ConfigurationManager.AppSettings.Get("O2OID") + ConfigurationManager.AppSettings.Get("O2OName")) + "&SiteID=" + ConfigurationManager.AppSettings.Get("O2OID") + "&Items=" + System.Web.HttpUtility.UrlEncode(JsonConvert.SerializeObject(member));
+
+                            GS.SendForm(ConfigurationManager.AppSettings.Get("O2OURL"), param);
+                        }
+                        #endregion
+                    }
+
+                    Token token = new Token();
+                    String TokenID = token.LoginToken(this.CellPhone.Text, Setting);
+                    if (this.returnurl.Value.Replace("&", "////").Split('?').Length > 1)
+                    {
+                        Response.Redirect(this.weburl.Value + "/" + GS.GetLanString(this.language.Value) + "/log.asp?id=" + this.CellPhone.Text + "&VerCode=" + this.VerCode.Value + "&tokenid=" + TokenID + "&ReturnUrl=" + this.returnurl.Value.Replace("&", "////").Split('?')[1]);
+                    }
+                    else
+                    {
+                        Response.Redirect(this.weburl.Value + "/" + GS.GetLanString(this.language.Value) + "/log.asp?id=" + this.CellPhone.Text + "&VerCode=" + this.VerCode.Value + "&tokenid=" + TokenID + "&ReturnUrl=au_id=a////sub_id=b");
+                    }
+                }
+                else
+                {
+                    if (result.IndexOf("error") >= 0)
+                    {
+                        switch (result)
+                        {
+                            case "error:1":     //查無此帳號
+                                Response.Write("<script language='javascript'>alert('查無此帳號');</script>");
+                                break;
+                            case "error:2":     //DB儲存有誤
+                                Response.Write("<script language='javascript'>alert('儲存有誤');</script>");
+                                break;
+                            case "error:3":     //驗證碼錯誤
+                                Response.Write("<script language='javascript'>alert('驗證碼錯誤');</script>");
+                                break;
+                            case "error:4":     //傳遞參數不完整
+                                Response.Write("<script language='javascript'>alert('傳遞參數不完整');</script>");
+                                break;
+                            default:            //其他
+                                Response.Write("<script language='javascript'>alert('其他');</script>");
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
+    }
+}

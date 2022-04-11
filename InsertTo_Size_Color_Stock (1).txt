@@ -1,0 +1,91 @@
+CREATE PROCEDURE [dbo].[InsertTo_Size_Color_Stock]
+        @stock_prod_id int,
+        @prod_title nvarchar(100),
+        @color_title nvarchar(100) = null,
+        @size_title nvarchar(100) = null,
+        @stock nvarchar(100) = null,
+		@ReturnState int output
+AS
+BEGIN
+declare @prod_Id int,@colorId int,@sizeId int,@ser_no varchar(3),@temp_Id int
+	select @prod_Id=id from prod where @stock_prod_id=id And @prod_title=title	--先看看prod的這筆產品資料是否正確(或說 有沒有這筆資料)
+	if @prod_Id is null	--如果沒有，代表它根本打錯了，就退出吧 ReturnState = 1 代表 應對prod的id與title對應錯誤
+	begin
+		set @ReturnState = 1
+		return
+	end
+
+	--確認有沒有這個color
+	if @color_title is not null and @color_title != ''	--但要先確認它是不是null(如果是null，則id繼續保持為null)
+		begin
+		select @colorId=id from prod_color where @color_title=title
+			if @colorId is null
+			begin
+				insert into prod_color (title) values (@color_title)
+				select @colorId=id from prod_color where @color_title=title
+			end
+		end
+	else
+	begin
+		select @colorId=id from prod_size where title is null or title=''
+		if @colorId is null
+			begin
+			set identity_insert prod_color on
+			insert into prod_color(id,title) values (0,'')
+			set identity_insert prod_color off
+			end
+		set @colorId = 0
+	end
+
+
+	--確認有沒有這個size
+	if @size_title is not null and @size_title != ''	--但要先確認它是不是null(如果是null，則id繼續保持為null)
+	begin
+		select @sizeId=id from prod_size where @size_title=title
+			if @sizeId is null
+			begin
+				insert into prod_size(title) values (@size_title)
+				select @sizeId=id from prod_size where @size_title=title
+			end
+	end
+	else
+	begin		
+		select @sizeId=id from prod_size where title is null or title=''
+		if @sizeId is null
+			begin
+			set identity_insert prod_size on
+			insert into prod_size(id,title) values (0,'')
+			set identity_insert prod_size off
+			end
+		set @sizeId = 0
+	end
+
+
+	--確認有這筆產品且資料無誤後要確認stock裡面有這筆庫存資料(color,size也已先確認過了)
+	select @temp_Id=prod_id from prod_Stock where @prod_Id=prod_id and @sizeId=sizeID and @colorId=colorID
+	if @temp_Id is null
+	begin
+		select top 1 @ser_no=ser_no from prod_Stock where @prod_Id=prod_id order by (case ISNUMERIC(ser_no) when 1 then str(ser_no,10) else ser_no end) desc
+		if @ser_no is not null
+			begin
+				set @ser_no = @ser_no + 1
+				set @ser_no = replicate('0', (3-len(@ser_no))) + @ser_no
+			end
+		else
+			begin
+				set @ser_no = '001'
+			end
+		insert into prod_Stock (prod_id,ser_no,colorID,sizeID) values (@prod_Id,@ser_no,@colorId,@sizeId)	--如果庫存沒有這筆資料，要先新增它，樓下才好做update
+	end
+
+	--如果stock為空白，則將之設為0
+	if (@stock is null or @stock = '')
+		begin
+			set @stock = 0
+		end
+
+	--上面檢查過了就直接update庫存吧
+	update prod_Stock set stock=@stock where prod_id=@prod_Id and @sizeId=sizeID and @colorId=colorID
+	set @ReturnState = 0
+	return
+END

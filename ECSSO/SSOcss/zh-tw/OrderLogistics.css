@@ -1,0 +1,4 @@
+body{margin:0; max-width:100%; overflow:hidden;}
+#OrderQA>.row>[class^="col-"]{background-color:#eeeeee; width:100%; padding:5px 10px; border-bottom:#ccc dashed 1px;}
+#OrderQA>.row>[class^="col-"]:last-child{border-bottom:none;}
+#OrderQA>.row>[class^="col-"]:nth-child(even){background-color:#cfcfcf;}

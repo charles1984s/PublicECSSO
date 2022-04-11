@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A25AB48B-E6D6-42B8-97AA-CFD750A048B1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Meal</RootNamespace>
+    <AssemblyName>Meal</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Manage.aspx" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="upload\ad_03.png" />
+    <Content Include="ValidateCode.ashx" />
+    <Content Include="api\GetBill.ashx" />
+    <Content Include="api\GetMeal.ashx" />
+    <Content Include="api\GetTable.ashx" />
+    <Content Include="api\CreateData.ashx" />
+    <Content Include="api\Account.ashx" />
+    <Content Include="api\Lookfor.ashx" />
+    <Content Include="api\UpdateData.ashx" />
+    <Content Include="api\DeleteData.ashx" />
+    <Content Include="api\UploadFile.ashx" />
+    <Content Include="api\DishList.ashx" />
+    <Content Include="api\Report.ashx" />
+    <Content Include="api\GetPOSData.ashx" />
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="img\ad_03.png" />
+    <Content Include="img\bgg.jpg" />
+    <Content Include="img\eclogo.png" />
+    <Content Include="img\facebook_login.png" />
+    <Content Include="img\foot.png" />
+    <Content Include="img\Google_login.png" />
+    <Content Include="img\hinet_login.png" />
+    <Content Include="img\infooter.jpg" />
+    <Content Include="img\login_logo.png" />
+    <Content Include="img\right_bg.png" />
+    <Content Include="js\autoheight.js" />
+    <Content Include="js\jquery.s2t.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="api\Account.ashx.cs">
+      <DependentUpon>Account.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\CreateData.ashx.cs">
+      <DependentUpon>CreateData.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\DeleteData.ashx.cs">
+      <DependentUpon>DeleteData.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\DishList.ashx.cs">
+      <DependentUpon>DishList.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\GetBill.ashx.cs">
+      <DependentUpon>GetBill.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\GetMeal.ashx.cs">
+      <DependentUpon>GetMeal.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\GetPOSData.ashx.cs">
+      <DependentUpon>GetPOSData.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\GetTable.ashx.cs">
+      <DependentUpon>GetTable.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Lookfor.ashx.cs">
+      <DependentUpon>Lookfor.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\Report.ashx.cs">
+      <DependentUpon>Report.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\UpdateData.ashx.cs">
+      <DependentUpon>UpdateData.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\UploadFile.ashx.cs">
+      <DependentUpon>UploadFile.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Account.cs" />
+    <Compile Include="Library\Bill.cs" />
+    <Compile Include="Library\Create.cs" />
+    <Compile Include="Library\GetMealStr.cs" />
+    <Compile Include="Library\Meal.cs" />
+    <Compile Include="Library\POSData.cs" />
+    <Compile Include="Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_LocalResources\" />
+    <Folder Include="SSOcss\en-us\" />
+    <Folder Include="SSOcss\vi-vn\" />
+    <Folder Include="SSOcss\zh-cn\" />
+    <Folder Include="SSOcss\zh-tw\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ECSSO\ECSSO.csproj">
+      <Project>{355a9562-899b-4f9c-802c-c04bf54846ca}</Project>
+      <Name>ECSSO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49063</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48099/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

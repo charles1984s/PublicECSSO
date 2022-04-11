@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ECSSO.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ECSSO_CRMebgWebService_EbgCrmWebServiceApi" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://cmw.hisales.hinet.net/CrmWebServiceAPI/EbgCrmWebServiceApi.asmx</Value>
+    </Setting>
+    <Setting Name="ECSSO_CockerAdmin_CockerAdmin" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://admin.cocker.com.tw/CockerAdmin.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://admin.cocker.com.tw/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://admin.cocker.com.tw/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://admin.cocker.com.tw/">
+      <s:element name="InsertID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrgName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateEndDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrgName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateEndDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateEndDateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePwd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrgName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePwdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdatePwdResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsAuthenticated">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrgName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsAuthenticatedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsAuthenticatedResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNews">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNewsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNewsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExpiration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrgName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExpirationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExpirationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ForgetPwd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrgName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ForgetPwdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ForgetPwdResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InsertIDSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertID" />
+  </wsdl:message>
+  <wsdl:message name="InsertIDSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateEndDateSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateEndDate" />
+  </wsdl:message>
+  <wsdl:message name="UpdateEndDateSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateEndDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePwdSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePwd" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePwdSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePwdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsAuthenticatedSoapIn">
+    <wsdl:part name="parameters" element="tns:IsAuthenticated" />
+  </wsdl:message>
+  <wsdl:message name="IsAuthenticatedSoapOut">
+    <wsdl:part name="parameters" element="tns:IsAuthenticatedResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNewsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNews" />
+  </wsdl:message>
+  <wsdl:message name="GetNewsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExpirationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExpiration" />
+  </wsdl:message>
+  <wsdl:message name="GetExpirationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExpirationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ForgetPwdSoapIn">
+    <wsdl:part name="parameters" element="tns:ForgetPwd" />
+  </wsdl:message>
+  <wsdl:message name="ForgetPwdSoapOut">
+    <wsdl:part name="parameters" element="tns:ForgetPwdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CockerAdminSoap">
+    <wsdl:operation name="InsertID">
+      <wsdl:input message="tns:InsertIDSoapIn" />
+      <wsdl:output message="tns:InsertIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEndDate">
+      <wsdl:input message="tns:UpdateEndDateSoapIn" />
+      <wsdl:output message="tns:UpdateEndDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePwd">
+      <wsdl:input message="tns:UpdatePwdSoapIn" />
+      <wsdl:output message="tns:UpdatePwdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAuthenticated">
+      <wsdl:input message="tns:IsAuthenticatedSoapIn" />
+      <wsdl:output message="tns:IsAuthenticatedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNews">
+      <wsdl:input message="tns:GetNewsSoapIn" />
+      <wsdl:output message="tns:GetNewsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExpiration">
+      <wsdl:input message="tns:GetExpirationSoapIn" />
+      <wsdl:output message="tns:GetExpirationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ForgetPwd">
+      <wsdl:input message="tns:ForgetPwdSoapIn" />
+      <wsdl:output message="tns:ForgetPwdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CockerAdminSoap" type="tns:CockerAdminSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertID">
+      <soap:operation soapAction="http://admin.cocker.com.tw/InsertID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEndDate">
+      <soap:operation soapAction="http://admin.cocker.com.tw/UpdateEndDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePwd">
+      <soap:operation soapAction="http://admin.cocker.com.tw/UpdatePwd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAuthenticated">
+      <soap:operation soapAction="http://admin.cocker.com.tw/IsAuthenticated" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNews">
+      <soap:operation soapAction="http://admin.cocker.com.tw/GetNews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpiration">
+      <soap:operation soapAction="http://admin.cocker.com.tw/GetExpiration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForgetPwd">
+      <soap:operation soapAction="http://admin.cocker.com.tw/ForgetPwd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CockerAdminSoap12" type="tns:CockerAdminSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertID">
+      <soap12:operation soapAction="http://admin.cocker.com.tw/InsertID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEndDate">
+      <soap12:operation soapAction="http://admin.cocker.com.tw/UpdateEndDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePwd">
+      <soap12:operation soapAction="http://admin.cocker.com.tw/UpdatePwd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAuthenticated">
+      <soap12:operation soapAction="http://admin.cocker.com.tw/IsAuthenticated" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNews">
+      <soap12:operation soapAction="http://admin.cocker.com.tw/GetNews" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpiration">
+      <soap12:operation soapAction="http://admin.cocker.com.tw/GetExpiration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForgetPwd">
+      <soap12:operation soapAction="http://admin.cocker.com.tw/ForgetPwd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CockerAdmin">
+    <wsdl:port name="CockerAdminSoap" binding="tns:CockerAdminSoap">
+      <soap:address location="http://admin.cocker.com.tw/CockerAdmin.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CockerAdminSoap12" binding="tns:CockerAdminSoap12">
+      <soap12:address location="http://admin.cocker.com.tw/CockerAdmin.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

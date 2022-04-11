@@ -1,0 +1,28 @@
+<SCRIPT LANGUAGE=VBScript RUNAT=Server>
+sub application_onstart
+
+Application("cn2_ConnectionString")="Provider=SQLOLEDB.1;User ID=Cocker_Admin;Initial Catalog=Cocker_Admin;Data Source=."
+Application("cn2_RuntimeUserName") = "Cocker_Admin"
+Application("cn2_RuntimePassword") = "Cocker_Admin@135"
+
+Application("asia_ConnectionTimeout") = 150
+Application("asia_CommandTimeout") = 30000
+Application("asia_CursorLocation") = 3
+
+Application("smtpserver")="msa.hinet.net"
+
+end sub
+
+sub application_onEnd
+
+End sub
+
+Sub Session_OnStart
+End Sub
+
+Sub Session_OnEnd
+
+End Sub
+
+
+</script>

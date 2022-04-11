@@ -1,0 +1,8 @@
+C:\Inetpub\cocker\ECSSO\TAT\bin\TAT.dll.config
+C:\Inetpub\cocker\ECSSO\TAT\bin\TAT.dll
+C:\Inetpub\cocker\ECSSO\TAT\bin\TAT.pdb
+C:\Inetpub\cocker\ECSSO\TAT\bin\Newtonsoft.Json.dll
+C:\Inetpub\cocker\ECSSO\TAT\bin\Newtonsoft.Json.xml
+C:\Inetpub\cocker\ECSSO\TAT\obj\Debug\TAT.csprojResolveAssemblyReference.cache
+C:\Inetpub\cocker\ECSSO\TAT\obj\Debug\TAT.dll
+C:\Inetpub\cocker\ECSSO\TAT\obj\Debug\TAT.pdb
